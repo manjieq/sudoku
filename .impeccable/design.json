@@ -1,0 +1,547 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-12T00:00:00Z",
+  "title": "Design System: Plate IX",
+  "extensions": {
+    "colorMeta": {
+      "stock": {
+        "role": "neutral",
+        "displayName": "Cool Chart Stock",
+        "canonical": "#e4e9e1",
+        "tonalRamp": [
+          "#1e211d",
+          "#333730",
+          "#4c5147",
+          "#69705f",
+          "#8a917f",
+          "#adb4a3",
+          "#cdd4c8",
+          "#f0f4ed"
+        ]
+      },
+      "stock-deep": {
+        "role": "neutral",
+        "displayName": "Deep Stock Surround",
+        "canonical": "#d5dcd2",
+        "tonalRamp": [
+          "#1c1f1b",
+          "#31352e",
+          "#494e45",
+          "#666c60",
+          "#868d7f",
+          "#a8b0a2",
+          "#c9d1c5",
+          "#ecf1e9"
+        ]
+      },
+      "stock-edge": {
+        "role": "neutral",
+        "displayName": "Trim Edge",
+        "canonical": "#c3ccc0",
+        "tonalRamp": [
+          "#1a1d19",
+          "#2e322c",
+          "#454a42",
+          "#61685d",
+          "#81897c",
+          "#a3ac9f",
+          "#c5cec2",
+          "#e8efe5"
+        ]
+      },
+      "ink": {
+        "role": "primary",
+        "displayName": "Key Ink Black",
+        "canonical": "#14171a",
+        "tonalRamp": [
+          "#0a0c0e",
+          "#14171a",
+          "#282d32",
+          "#3f464d",
+          "#5a626a",
+          "#7a838c",
+          "#a3abb3",
+          "#d6dbdf"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Secondary Printed Grey",
+        "canonical": "#4a5450",
+        "tonalRamp": [
+          "#141817",
+          "#242a28",
+          "#37403d",
+          "#4a5450",
+          "#6a7671",
+          "#8d9894",
+          "#b4bdba",
+          "#dde2e0"
+        ]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Data Layer Grey",
+        "canonical": "#5f6a65",
+        "tonalRamp": [
+          "#171a19",
+          "#282e2c",
+          "#3c4441",
+          "#505a57",
+          "#5f6a65",
+          "#8b9691",
+          "#b3bcb8",
+          "#dce1df"
+        ]
+      },
+      "band-2": {
+        "role": "neutral",
+        "displayName": "Band Prose",
+        "canonical": "color-mix(in srgb, #e4e9e1 78%, #14171a)",
+        "tonalRamp": [
+          "#1e211d",
+          "#333730",
+          "#4c5147",
+          "#69705f",
+          "#8a917f",
+          "#adb4a3",
+          "#b8bfb4",
+          "#e0e5dd"
+        ]
+      },
+      "band-3": {
+        "role": "neutral",
+        "displayName": "Band Label",
+        "canonical": "color-mix(in srgb, #e4e9e1 55%, #14171a)",
+        "tonalRamp": [
+          "#1a1c19",
+          "#2b2f2b",
+          "#3f4540",
+          "#545c56",
+          "#6b746e",
+          "#848d87",
+          "#9ba49e",
+          "#c6cdc8"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Print Paper",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#595959",
+          "#737373",
+          "#8c8c8c",
+          "#bfbfbf",
+          "#e6e6e6",
+          "#ffffff"
+        ]
+      },
+      "entry": {
+        "role": "tertiary",
+        "displayName": "Entry Blue (the hand)",
+        "canonical": "#17357f",
+        "tonalRamp": [
+          "#080f28",
+          "#0d1a46",
+          "#122765",
+          "#17357f",
+          "#2148a8",
+          "#3f6ad0",
+          "#7c9ce5",
+          "#c3d2f4"
+        ]
+      },
+      "conflict": {
+        "role": "tertiary",
+        "displayName": "Repeat Crimson",
+        "canonical": "#9e0f18",
+        "tonalRamp": [
+          "#2b0407",
+          "#4a070c",
+          "#6b0a11",
+          "#8c0d15",
+          "#9e0f18",
+          "#cf2530",
+          "#e4676f",
+          "#f6c3c7"
+        ]
+      },
+      "conflict-bright": {
+        "role": "tertiary",
+        "displayName": "Overprint Crimson",
+        "canonical": "#b4121c",
+        "tonalRamp": [
+          "#310508",
+          "#54080d",
+          "#770b13",
+          "#9a0e18",
+          "#b4121c",
+          "#db2f3a",
+          "#ec7a81",
+          "#f9cdd0"
+        ]
+      },
+      "gold": {
+        "role": "tertiary",
+        "displayName": "Apparatus Gold",
+        "canonical": "#e8b10c",
+        "tonalRamp": [
+          "#3b2c02",
+          "#604804",
+          "#866406",
+          "#ac8009",
+          "#d19d0b",
+          "#e8b10c",
+          "#f2cc5e",
+          "#fbeab5"
+        ]
+      },
+      "fam-1": {
+        "role": "secondary",
+        "displayName": "Viridian Plate",
+        "canonical": "#00794f",
+        "tonalRamp": [
+          "#001b12",
+          "#00311f",
+          "#00472d",
+          "#005e3b",
+          "#00794f",
+          "#00a76d",
+          "#33d69c",
+          "#a6f0d4"
+        ]
+      },
+      "fam-2": {
+        "role": "secondary",
+        "displayName": "Manganese Plate",
+        "canonical": "#6a2ea0",
+        "tonalRamp": [
+          "#1c0c2a",
+          "#2f1447",
+          "#431c64",
+          "#571f80",
+          "#6a2ea0",
+          "#8c4cc6",
+          "#b183df",
+          "#dfcdf2"
+        ]
+      },
+      "fam-3": {
+        "role": "secondary",
+        "displayName": "Chromate Plate",
+        "canonical": "#ab7f00",
+        "tonalRamp": [
+          "#2c2100",
+          "#4a3700",
+          "#684d00",
+          "#866400",
+          "#ab7f00",
+          "#d5a00e",
+          "#e9c257",
+          "#f8e7b1"
+        ]
+      },
+      "fam-4": {
+        "role": "secondary",
+        "displayName": "Cerulean Plate",
+        "canonical": "#12617f",
+        "tonalRamp": [
+          "#061c25",
+          "#0a3040",
+          "#0e455a",
+          "#125a76",
+          "#12617f",
+          "#1f8db6",
+          "#5ab4d8",
+          "#bfe2f0"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Chart Title",
+        "purpose": "The masthead title. Once per sheet, expanded gothic caps at wdth 125."
+      },
+      "headline": {
+        "displayName": "Press Line",
+        "purpose": "The press state line during plate generation; the SOLVED overprint runs wider at wdth 118."
+      },
+      "title": {
+        "displayName": "Counter",
+        "purpose": "Masthead counters (plate, clues, elapsed) and census figures."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "A figure entered by hand. Givens are set wider and heavier (wdth 112 / wght 800) in black."
+      },
+      "body": {
+        "displayName": "Notes Line",
+        "purpose": "The notes band prose, max 72ch. Standfirst runs wdth 88, max 54ch."
+      },
+      "note": {
+        "displayName": "Key Note",
+        "purpose": "Legend text and key-block notes, max 34ch."
+      },
+      "label": {
+        "displayName": "Field Label",
+        "purpose": "Section heads, datum terms, index ticks. Uppercase, letterspaced, condensed."
+      },
+      "data": {
+        "displayName": "Data Layer",
+        "purpose": "The smallest printed layer: ink bar labels, coordinates, pencil marks, keyboard hints."
+      }
+    },
+    "shadows": [
+      {
+        "name": "mark-ring",
+        "value": "inset 0 0 0 3px #14171a",
+        "purpose": "The marked cell's printed keyline. An inset ring, not an elevation."
+      },
+      {
+        "name": "mark-ring-focus",
+        "value": "inset 0 0 0 3px #14171a, inset 0 0 0 6px #e8b10c",
+        "purpose": "Keyboard focus inside the marked cell; gold seated inside the black ring."
+      },
+      {
+        "name": "double-underrule",
+        "value": "0 0.11em 0 #9e0f18",
+        "purpose": "The second stroke of the proofreader's double rule under a repeated figure. Solid, zero blur, never a drop shadow."
+      }
+    ],
+    "motion": [
+      {
+        "name": "set",
+        "value": "150ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The only state transition on the page. Colour and background only."
+      },
+      {
+        "name": "ink",
+        "value": "170ms cubic-bezier(0.16, 1, 0.3, 1) — from { opacity: 0.15; transform: scale(1.3); filter: blur(3px) } to default",
+        "purpose": "A figure landing on paper: large, wet, blurred, then biting sharp."
+      },
+      {
+        "name": "strike",
+        "value": "300ms cubic-bezier(0.16, 1, 0.3, 1) — from { opacity: 0.1; transform: rotate(-13deg) scale(1.9); filter: blur(6px) } to default",
+        "purpose": "The SOLVED overprint hitting the plate."
+      },
+      {
+        "name": "press-fill",
+        "value": "transform 120ms linear",
+        "purpose": "The generation progress bar's scaleX fill. Linear because it reports real work."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "@media (prefers-reduced-motion: reduce) { animation: none !important; transition: none !important }",
+        "purpose": "Every animation and transition on the page is killed, universally."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "key-stack",
+        "value": "960px"
+      },
+      {
+        "name": "coord-drop",
+        "value": "860px"
+      },
+      {
+        "name": "sheet-fold",
+        "value": "640px"
+      }
+    ],
+    "rampExceptions": {
+      "note": "Eight sizes sit off the recorded type ramp on purpose. Each is a legibility decision tuned against a shipped, reviewed rendering; snapping them to the nearest ramp step would trade a verified rendering for a tidier table. Closed list, not a licence: new surfaces take a ramp role.",
+      "sites": [
+        ".skip 0.75rem",
+        ".key-h 0.74rem",
+        ".swatch--pencil 0.5rem",
+        ".coord clamp endpoints",
+        ".pencil clamp endpoints",
+        ".stamp-word clamp endpoints",
+        ".stamp-meta clamp endpoints",
+        ".tally-fig clamp endpoints"
+      ]
+    }
+  },
+  "components": [
+    {
+      "name": "Plate Cell",
+      "kind": "custom",
+      "refersTo": "cell",
+      "description": "One of the 81 cells. Family tint under a two-pass offset halftone, with a printed coordinate in the corner.",
+      "html": "<div class=\"ds-plate-demo\"><button class=\"ds-cell\" style=\"--fam:#00794f\"><span class=\"ds-coord\">D4</span><span class=\"ds-figure\">7</span></button><button class=\"ds-cell ds-cell-given\" style=\"--fam:#00794f\"><span class=\"ds-figure\">4</span></button><button class=\"ds-cell ds-cell-conflict\" style=\"--fam:#6a2ea0\"><span class=\"ds-coord\">E5</span><span class=\"ds-figure\">7</span></button><button class=\"ds-cell ds-cell-marked\" style=\"--fam:#ab7f00\"><span class=\"ds-coord\">F6</span><span class=\"ds-figure\">2</span></button></div>",
+      "css": ".ds-plate-demo { display: flex; gap: 3px; font-family: Archivo, Helvetica Neue, Helvetica, Arial, sans-serif; font-variant-numeric: tabular-nums lining-nums; } .ds-cell { position: relative; appearance: none; width: 64px; height: 64px; margin: 0; padding: 0; border: 1px solid color-mix(in srgb, #14171a 26%, transparent); cursor: pointer; display: grid; place-items: center; background-color: color-mix(in srgb, var(--fam) 17%, #e4e9e1); background-image: radial-gradient(color-mix(in srgb, var(--fam) 60%, transparent) 0.5px, transparent 0.6px), radial-gradient(color-mix(in srgb, var(--fam) 60%, transparent) 0.5px, transparent 0.6px); background-size: 3px 3px, 3px 3px; background-position: 0 0, 1.5px 1.5px; color: #17357f; font-size: 2rem; font-variation-settings: 'wdth' 100, 'wght' 600; line-height: 1; transition: background-color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-cell:hover { background-color: color-mix(in srgb, var(--fam) 24%, #e4e9e1); } .ds-coord { position: absolute; top: 3px; left: 4px; font-size: 0.55rem; letter-spacing: 0.06em; font-variation-settings: 'wdth' 70, 'wght' 600; color: color-mix(in srgb, var(--fam) 45%, #14171a); pointer-events: none; } .ds-figure { position: relative; z-index: 1; display: block; } .ds-cell-given { color: #14171a; font-variation-settings: 'wdth' 112, 'wght' 800; background-color: color-mix(in srgb, var(--fam) 28%, #e4e9e1); cursor: default; } .ds-cell-conflict { color: #9e0f18; } .ds-cell-conflict .ds-figure::after { content: ''; position: absolute; left: -6%; right: -6%; bottom: -0.14em; height: 0.09em; background: #9e0f18; box-shadow: 0 0.11em 0 #9e0f18; } .ds-cell-marked { background-color: #e4e9e1; background-image: none; box-shadow: inset 0 0 0 3px #14171a; } .ds-cell-marked:hover { background-color: #e4e9e1; } .ds-cell:focus-visible { outline: 0; box-shadow: inset 0 0 0 3px #14171a, inset 0 0 0 6px #e8b10c; }"
+    },
+    {
+      "name": "Operation Row",
+      "kind": "button",
+      "refersTo": "op",
+      "description": "A printed operation row with its keyboard hint set right. Inverts to solid black on hover.",
+      "html": "<button class=\"ds-op\" type=\"button\"><span>Undo last mark</span><kbd class=\"ds-op-kbd\">Ctrl Z</kbd></button>",
+      "css": ".ds-op { appearance: none; width: 260px; border: 0; border-top: 1px solid color-mix(in srgb, #14171a 26%, transparent); background: #e4e9e1; font-family: Archivo, Helvetica Neue, Helvetica, Arial, sans-serif; color: #14171a; text-align: left; padding: 0.3rem 0.55rem; cursor: pointer; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; font-variation-settings: 'wdth' 84, 'wght' 700; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; transition: background 150ms cubic-bezier(0.16,1,0.3,1), color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-op:hover, .ds-op:focus-visible { background: #14171a; color: #e4e9e1; outline-offset: 2px; } .ds-op-kbd { font-family: inherit; font-size: 0.7rem; letter-spacing: 0.08em; font-variation-settings: 'wdth' 70, 'wght' 600; color: #5f6a65; background: #e4e9e1; border: 1px solid color-mix(in srgb, #14171a 26%, transparent); padding: 0.15rem 0.35rem; } .ds-op:hover .ds-op-kbd { background: #14171a; color: #e4e9e1; border-color: color-mix(in srgb, #e4e9e1 45%, transparent); }"
+    },
+    {
+      "name": "Primary Operation",
+      "kind": "button",
+      "refersTo": "op-primary",
+      "description": "The one filled action on the sheet. Black at rest, entry blue on hover.",
+      "html": "<button class=\"ds-op-primary\" type=\"button\">Set a new plate</button>",
+      "css": ".ds-op-primary { appearance: none; width: 260px; border: 0; background: #14171a; color: #e4e9e1; font-family: Archivo, Helvetica Neue, Helvetica, Arial, sans-serif; text-align: left; padding: 0.3rem 0.7rem; cursor: pointer; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; font-variation-settings: 'wdth' 84, 'wght' 700; transition: background 150ms cubic-bezier(0.16,1,0.3,1); } .ds-op-primary:hover { background: #17357f; color: #e4e9e1; } .ds-op-primary:focus-visible { outline: 2px solid #14171a; outline-offset: 2px; }"
+    },
+    {
+      "name": "Pencil Switch",
+      "kind": "button",
+      "refersTo": "op-switch-on",
+      "description": "A toggled operation row: gold fill when on, with its state chip inverted to black-on-gold.",
+      "html": "<button class=\"ds-op-switch\" type=\"button\" aria-pressed=\"true\"><span>Pencil</span><span class=\"ds-op-state\">On</span></button>",
+      "css": ".ds-op-switch { appearance: none; width: 260px; border: 0; background: #e8b10c; color: #14171a; font-family: Archivo, Helvetica Neue, Helvetica, Arial, sans-serif; text-align: left; padding: 0.3rem 0.55rem; cursor: pointer; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; font-variation-settings: 'wdth' 84, 'wght' 700; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; transition: background 150ms cubic-bezier(0.16,1,0.3,1); } .ds-op-switch:hover { background: #e8b10c; color: #14171a; } .ds-op-switch:focus-visible { outline: 2px solid #14171a; outline-offset: 2px; } .ds-op-state { font-size: 0.7rem; letter-spacing: 0.12em; border: 1px solid #14171a; padding: 0.15rem 0.45rem; background: #14171a; color: #e8b10c; }"
+    },
+    {
+      "name": "Census Tally",
+      "kind": "chip",
+      "refersTo": "tally",
+      "description": "One of nine digit tallies. Inverts to gold-on-black on hover; loses weight, not colour, when spent.",
+      "html": "<div class=\"ds-census\"><button class=\"ds-tally\" type=\"button\"><span class=\"ds-tally-fig\">7</span><span class=\"ds-tally-left\">3 left</span></button><button class=\"ds-tally ds-tally-spent\" type=\"button\"><span class=\"ds-tally-fig\">4</span><span class=\"ds-tally-left\">set</span></button></div>",
+      "css": ".ds-census { display: flex; gap: 3px; font-family: Archivo, Helvetica Neue, Helvetica, Arial, sans-serif; font-variant-numeric: tabular-nums lining-nums; } .ds-tally { appearance: none; border: 1px solid color-mix(in srgb, #14171a 26%, transparent); background: #e4e9e1; font-family: inherit; color: #17357f; cursor: pointer; padding: 0.28rem 0.5rem 0.22rem; display: grid; justify-items: center; gap: 0.15rem; transition: background 150ms cubic-bezier(0.16,1,0.3,1), color 150ms cubic-bezier(0.16,1,0.3,1), border-color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-tally-fig { font-size: 1.35rem; line-height: 1; font-variation-settings: 'wdth' 108, 'wght' 700; } .ds-tally-left { font-size: 0.7rem; letter-spacing: 0.08em; font-variation-settings: 'wdth' 70, 'wght' 600; color: #5f6a65; } .ds-tally:hover, .ds-tally:focus-visible { background: #14171a; color: #e8b10c; border-color: #14171a; } .ds-tally:hover .ds-tally-left { color: color-mix(in srgb, #e8b10c 70%, #14171a); } .ds-tally-spent { color: #5f6a65; background: color-mix(in srgb, #14171a 7%, #e4e9e1); cursor: default; } .ds-tally-spent .ds-tally-fig { font-variation-settings: 'wdth' 108, 'wght' 400; }"
+    },
+    {
+      "name": "Series Tab Strip",
+      "kind": "nav",
+      "refersTo": "tab",
+      "description": "Difficulty tabs printed into the black masthead band; the active tab fills with stock and seats into the sheet.",
+      "html": "<nav class=\"ds-tabstrip\"><span class=\"ds-tabstrip-label\">Series</span><div class=\"ds-tabs\"><button class=\"ds-tab\" type=\"button\">Open<span class=\"ds-tab-sub\">40 clues</span></button><button class=\"ds-tab ds-tab-active\" type=\"button\" aria-pressed=\"true\">Standard<span class=\"ds-tab-sub\">32 clues</span></button><button class=\"ds-tab\" type=\"button\">Severe<span class=\"ds-tab-sub\">26 clues</span></button></div></nav>",
+      "css": ".ds-tabstrip { background: #14171a; padding: 0.9rem 1.5rem 0; display: flex; align-items: flex-end; gap: 0.9rem; font-family: Archivo, Helvetica Neue, Helvetica, Arial, sans-serif; } .ds-tabstrip-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; font-variation-settings: 'wdth' 72, 'wght' 600; color: color-mix(in srgb, #e4e9e1 55%, #14171a); padding-bottom: 0.7rem; } .ds-tabs { display: flex; gap: 3px; } .ds-tab { appearance: none; border: 0; background: color-mix(in srgb, #e4e9e1 16%, #14171a); color: color-mix(in srgb, #e4e9e1 72%, #14171a); font-family: inherit; font-size: 0.82rem; font-variation-settings: 'wdth' 92, 'wght' 700; letter-spacing: 0.03em; text-transform: uppercase; padding: 0.5rem 1.05rem 0.6rem; cursor: pointer; display: flex; flex-direction: column; gap: 0.18rem; transition: background 150ms cubic-bezier(0.16,1,0.3,1), color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-tab-sub { font-size: 0.7rem; letter-spacing: 0.1em; font-variation-settings: 'wdth' 70, 'wght' 500; opacity: 0.9; } .ds-tab:hover:not(.ds-tab-active) { background: color-mix(in srgb, #e4e9e1 26%, #14171a); color: #e4e9e1; } .ds-tab:focus-visible { outline: 2px solid #e8b10c; outline-offset: 2px; } .ds-tab-active { background: #e4e9e1; color: #14171a; padding-bottom: 0.95rem; margin-bottom: -0.2rem; } .ds-tab-active .ds-tab-sub { opacity: 1; color: #4a5450; }"
+    },
+    {
+      "name": "Family Key Chip",
+      "kind": "chip",
+      "refersTo": "family-chip",
+      "description": "One chip per box in its plate ink. The live chip drops the halftone screen and prints at full ink.",
+      "html": "<ul class=\"ds-familykey\"><li class=\"ds-famchip\" style=\"--fam:#00794f\">1</li><li class=\"ds-famchip\" style=\"--fam:#6a2ea0\">2</li><li class=\"ds-famchip ds-famchip-live\" style=\"--fam:#ab7f00\">3</li><li class=\"ds-famchip\" style=\"--fam:#12617f\">4</li></ul>",
+      "css": ".ds-familykey { list-style: none; margin: 0; padding: 0; display: flex; gap: 2px; font-family: Archivo, Helvetica Neue, Helvetica, Arial, sans-serif; } .ds-famchip { width: 2.2rem; height: 1.5rem; border: 1px solid color-mix(in srgb, #14171a 26%, transparent); background-color: color-mix(in srgb, var(--fam) 30%, #e4e9e1); background-image: radial-gradient(color-mix(in srgb, var(--fam) 60%, transparent) 0.5px, transparent 0.6px), radial-gradient(color-mix(in srgb, var(--fam) 60%, transparent) 0.5px, transparent 0.6px); background-size: 3px 3px, 3px 3px; background-position: 0 0, 1.5px 1.5px; display: grid; place-items: center; font-size: 0.72rem; letter-spacing: 0.04em; font-variation-settings: 'wdth' 70, 'wght' 700; color: color-mix(in srgb, var(--fam) 40%, #14171a); transition: background-color 150ms cubic-bezier(0.16,1,0.3,1), color 150ms cubic-bezier(0.16,1,0.3,1); } .ds-famchip-live { background-image: none; background-color: var(--fam); color: #e4e9e1; border-color: var(--fam); }"
+    },
+    {
+      "name": "State Key Swatch",
+      "kind": "card",
+      "refersTo": "cell",
+      "description": "Legend swatches built from the same tint and screen as the live board — a cutting of the plate, not a drawing of it.",
+      "html": "<ul class=\"ds-legend\"><li class=\"ds-legend-row\"><span class=\"ds-swatch ds-swatch-given\">4</span><span class=\"ds-legend-t\">Set at press &mdash; fixed</span></li><li class=\"ds-legend-row\"><span class=\"ds-swatch ds-swatch-entered\">7</span><span class=\"ds-legend-t\">Entered by hand</span></li><li class=\"ds-legend-row\"><span class=\"ds-swatch ds-swatch-conflict\">7</span><span class=\"ds-legend-t\">Repeats in its rank, file or box</span></li></ul>",
+      "css": ".ds-legend { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.22rem; font-family: Archivo, Helvetica Neue, Helvetica, Arial, sans-serif; } .ds-legend-row { display: flex; align-items: center; gap: 0.6rem; } .ds-swatch { flex: none; width: 1.7rem; height: 1.7rem; border: 1px solid color-mix(in srgb, #14171a 26%, transparent); display: grid; place-items: center; font-size: 0.95rem; line-height: 1; background-image: radial-gradient(color-mix(in srgb, #12617f 60%, transparent) 0.5px, transparent 0.6px), radial-gradient(color-mix(in srgb, #12617f 60%, transparent) 0.5px, transparent 0.6px); background-size: 3px 3px, 3px 3px; background-position: 0 0, 1.5px 1.5px; background-color: color-mix(in srgb, #12617f 17%, #e4e9e1); } .ds-swatch-given { color: #14171a; font-variation-settings: 'wdth' 112, 'wght' 800; background-color: color-mix(in srgb, #12617f 28%, #e4e9e1); } .ds-swatch-entered { color: #17357f; font-variation-settings: 'wdth' 100, 'wght' 600; } .ds-swatch-conflict { color: #9e0f18; font-variation-settings: 'wdth' 100, 'wght' 600; border-bottom: 2px solid #9e0f18; } .ds-legend-t { font-size: 0.8rem; line-height: 1.35; font-variation-settings: 'wdth' 86, 'wght' 400; color: #4a5450; }"
+    },
+    {
+      "name": "Press State",
+      "kind": "custom",
+      "refersTo": "op",
+      "description": "The honest generation state: a stock veil over the plate with a ruled progress bar reporting real work.",
+      "html": "<div class=\"ds-press\"><p class=\"ds-press-line\">Setting plate</p><div class=\"ds-press-bar\"><span style=\"transform: scaleX(0.62)\"></span></div><p class=\"ds-press-pct\">62% &mdash; proving uniqueness</p></div>",
+      "css": ".ds-press { display: grid; align-content: center; justify-items: center; gap: 0.9rem; background: color-mix(in srgb, #e4e9e1 92%, transparent); padding: 2rem; text-align: center; font-family: Archivo, Helvetica Neue, Helvetica, Arial, sans-serif; color: #14171a; } .ds-press-line { margin: 0; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 0.16em; font-variation-settings: 'wdth' 108, 'wght' 800; } .ds-press-bar { width: 16rem; height: 10px; border: 2px solid #14171a; padding: 2px; } .ds-press-bar span { display: block; height: 100%; width: 100%; background: #14171a; transform-origin: left center; transition: transform 120ms linear; } .ds-press-pct { margin: 0; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; font-variation-settings: 'wdth' 72, 'wght' 600; color: #4a5450; }"
+    },
+    {
+      "name": "Ink Bar",
+      "kind": "custom",
+      "refersTo": "family-chip",
+      "description": "The trim furniture: a solid impression of each plate, labelled beneath in the condensed data register.",
+      "html": "<ul class=\"ds-inkbar\"><li class=\"ds-inkchip\" style=\"--chip:#00794f\"><span>Viridian</span></li><li class=\"ds-inkchip\" style=\"--chip:#6a2ea0\"><span>Manganese</span></li><li class=\"ds-inkchip\" style=\"--chip:#ab7f00\"><span>Chromate</span></li><li class=\"ds-inkchip\" style=\"--chip:#12617f\"><span>Cerulean</span></li><li class=\"ds-inkchip\" style=\"--chip:#9e0f18\"><span>Crimson</span></li><li class=\"ds-inkchip\" style=\"--chip:#14171a\"><span>Key</span></li></ul>",
+      "css": ".ds-inkbar { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 3px; font-family: Archivo, Helvetica Neue, Helvetica, Arial, sans-serif; } .ds-inkchip { min-width: 2.6rem; padding: 0.8rem 0.45rem 0; border-top: 0.8rem solid var(--chip); font-size: 0.7rem; letter-spacing: 0.04em; text-transform: uppercase; font-variation-settings: 'wdth' 66, 'wght' 600; color: #5f6a65; text-align: center; white-space: nowrap; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Laboratory Wall Chart",
+    "overview": "This is not an interface laid over a page; it is a single printed sheet. The board is the sheet, and every control on it — the series tab strip, the digit census, the state key, the operations list, the notes band, the ink bar at the trim — is apparatus printed onto that same sheet at the same press. There is no card, no panel floating over a background, and no toolbar anywhere. The sheet runs full-bleed to a 1120px trim with hairline edges, and the black masthead band and the notes band cross it edge to edge, the way a printed masthead crosses paper.\n\nThe material is flat process ink on cool chart stock (#e4e9e1). Everything that looks like depth here is a printing artifact rather than a lighting model: paper tooth from a fixed-position feTurbulence overlay multiplied at 16% opacity, two deliberate plate misregistrations (the gold masthead rule runs 2px right and 3px low; the viridian frame under the plate seats 3px off), and four registration crosses inset at the sheet's corners. Colour commits at page scale but never washes: the nine box fields are a flat family tint under a two-pass offset halftone screen, so they read as screened ink at reading distance and as dots up close.\n\nThe discipline that governs everything inside the 81 cells is channel separation. Givenness is carried by flat ink density and expanded weight; repeats are carried by crimson and a printed proofreader's double rule under the figure; the marked rank and file are carried by ruled black sightlines; the marked box is carried by a gold frame. No two states are allowed to compete on the same lightness axis, so a player mid-scan never has to decode the styling.",
+    "keyCharacteristics": [
+      "Flat process ink on chart stock; zero drop shadows, zero gradients as decoration",
+      "Four family plate inks rotated across nine boxes so no two touching boxes share one",
+      "Screened fields: flat tint plus a two-pass offset halftone at 3px pitch",
+      "One variable face worked hard across its width axis (wdth 125 down to wdth 66)",
+      "Every corner square; every border a ruled hairline, rule or heavy rule",
+      "All apparatus printed into the sheet — no floating toolbar, no modal chrome"
+    ],
+    "rules": [
+      {
+        "name": "The Reserved Ink Rule",
+        "body": "Crimson means a repeat and nothing else. Entry blue means a figure the player set and nothing else. Gold means live apparatus and nothing else. If a new surface needs a third meaning, it takes a family plate ink or it takes black — it does not borrow a reserved ink.",
+        "section": "colors"
+      },
+      {
+        "name": "The Four Plates Rule",
+        "body": "Box colour comes from exactly four inks rotated across the nine boxes ([1,2,3,4,1,2,3,4,1]) so no two touching boxes share one. A fifth family ink is not a colour decision, it is a break in the press run.",
+        "section": "colors"
+      },
+      {
+        "name": "The Reversed Band Rule",
+        "body": "Anything set on the black masthead band is a mix of stock back toward the ink, never an opacity and never a grey: band-2 for prose, band-3 for labels, full stock for the loudest register. Two named steps cover every reversed value on the band; a third means a new register, not a nudge.",
+        "section": "colors"
+      },
+      {
+        "name": "The Derived Tint Rule",
+        "body": "A cell never names its own colour. It inherits one --fam custom property and derives its whole ladder from it by color-mix against the stock: 17% at rest, 24% on hover, 28% when given. Add a state by adding a step to the ladder, never by writing a new hex.",
+        "section": "colors"
+      },
+      {
+        "name": "The Width-Is-Hierarchy Rule",
+        "body": "Rank is expressed by font-variation-settings width before it is expressed by size. Titling never goes below wdth 108; the data layer never goes above wdth 92. Two things at the same size are still separable because they are at different widths.",
+        "section": "typography"
+      },
+      {
+        "name": "The Self-Hosted Face Rule",
+        "body": "Archivo ships from fonts/ and stays there. No CDN link, ever: no fallback in the stack has a width axis, so a font fetched over a network that is not there collapses the entire hierarchy into one flat system face. The page makes no network request of any kind.",
+        "section": "typography"
+      },
+      {
+        "name": "The Figures-Are-Tabular Rule",
+        "body": "font-variant-numeric: tabular-nums lining-nums is set on the body and inherits everywhere. Counters, timers and 81 figures must not shift width as their digits change. font-synthesis-weight: none is set for the same reason: the real axis or nothing.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Axis Rule",
+        "body": "Masthead, plate body, notes band and trim all start on the same left margin (clamp(1rem, 3vw, 2.5rem)). Nothing is centred on the sheet except the sheet itself.",
+        "section": "layout"
+      },
+      {
+        "name": "The No-Toolbar Rule",
+        "body": "State is typeset into the plate. There is no floating bar, no sticky header, no bottom number pad — a control that cannot be printed into the sheet does not belong on it.",
+        "section": "layout"
+      },
+      {
+        "name": "The Press-Not-Light Rule",
+        "body": "Depth comes from ink on paper: tooth, screen, misregistration, rule weight. It never comes from a light source. If a new surface needs separation, it takes a heavier rule or a denser screen — not a shadow.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Two Moments Rule",
+        "body": "The build authors exactly two animations, both blur-to-sharp, both ending at the element's already-visible default state: ink (170ms — a figure lands large, wet and blurred, then bites) and strike (300ms — the stamp hits). Everything else that moves is a 150ms cubic-bezier(0.16, 1, 0.3, 1) colour transition. No fades in, no slides, no entrance animations. prefers-reduced-motion: reduce kills every animation and transition on the page with !important.",
+        "section": "components"
+      },
+      {
+        "name": "The Browser-Surface Rule",
+        "body": "The chrome the browser owns is printed too: ::selection is gold on black ink, :focus-visible is a 2px black outline at 2px offset, and the scrollbar is themed end to end (11px, ink-3 thumb with a 3px stock-deep border, ink-2 on hover, stock-deep track). Leaving a default blue selection or a default scrollbar on this sheet breaks the material.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do derive every box colour from the single --fam custom property and the tint ladder (17% / 24% / 28%), never by writing a new hex into a rule.",
+      "Do carry rank with the width axis first — titling at wdth 108+, data at wdth 92 or below, and the display line at wdth 125.",
+      "Do give every state its own channel: flat ink for givenness, ruled lines for rank and file, a gold frame for the box, crimson plus a printed rule for a repeat.",
+      "Do build legend swatches out of the same tint and the same halftone screen as the live board, so the key is a cutting of the plate rather than a drawing of it.",
+      "Do keep the masthead, notes band and trim full-bleed to the sheet's edges with their own internal inset.",
+      "Do reverse text out of the black band through the two named band mixes rather than by lowering opacity or reaching for a grey.",
+      "Do keep the root element on the deep stock ground, not just the body, so overscroll never exposes browser white.",
+      "Do theme the browser's own surfaces — selection, focus ring, scrollbar — in ink and stock.",
+      "Do state a state in text as well as colour (aria-pressed, the notes line, the tally remainder); colour never carries a meaning alone."
+    ],
+    "donts": [
+      "Don't add a drop shadow, a blur, a glow, or a gradient used as lighting. Depth here is tooth, screen, misregistration and rule weight.",
+      "Don't use pure white anywhere on screen. paper exists only in the print stylesheet, where the paper itself is the stock.",
+      "Don't round a corner. The radius scale has one step and it is 0.",
+      "Don't load the type face over a network. Self-hosted woff2 in fonts/ is the system, because the width axis has no fallback.",
+      "Don't spend a reserved ink on decoration: crimson is repeats, entry blue is the player's hand, gold is live apparatus and the masthead.",
+      "Don't introduce a fifth box family ink or break the four-ink rotation.",
+      "Don't wash the plate, dim non-peer cells, or tint the whole board to show focus — the apparatus takes the ink, not the field.",
+      "Don't float a toolbar, sticky bar, modal, or number pad over the sheet. A control that cannot be printed into the sheet does not belong on it.",
+      "Don't add an entrance animation, a fade-in, or a slide. Two authored moments exist; both start from the element's visible default."
+    ]
+  }
+}

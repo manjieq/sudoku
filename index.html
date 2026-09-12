@@ -3,37 +3,131 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sudoku</title>
+<meta name="color-scheme" content="light" />
+<meta name="description" content="Plate IX — a browser-generated sudoku reference plate. Every puzzle is built at play time and proven to have exactly one solution." />
+<title>Plate IX — Sudoku</title>
+<link rel="preload" href="fonts/archivo-latin-var.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="app">
-    <header>
-      <h1>Sudoku</h1>
-      <div class="controls">
-        <label for="difficulty">Difficulty</label>
-        <select id="difficulty">
-          <option value="easy">Easy</option>
-          <option value="medium" selected>Medium</option>
-          <option value="hard">Hard</option>
-        </select>
-        <button id="new-game">New Game</button>
-        <button id="reset">Reset</button>
-        <button id="check">Check</button>
+  <a class="skip" href="#board">Skip to the plate</a>
+
+  <div class="sheet">
+
+    <header class="masthead">
+      <div class="masthead-main">
+        <h1 class="chart-title">Sudoku</h1>
+        <p class="chart-standfirst">
+          Reference plate for the nine-by-nine Latin square under box constraint.
+          Every plate on this page is set by the browser at press time and proven,
+          clue by clue, to admit exactly one solution.
+        </p>
       </div>
-      <div class="status">
-        <span id="timer">00:00</span>
-        <span id="message" role="status" aria-live="polite"></span>
-      </div>
+
+      <dl class="masthead-data">
+        <div class="datum">
+          <dt>Plate</dt>
+          <dd id="plate-no">IX</dd>
+        </div>
+        <div class="datum">
+          <dt>Clues set</dt>
+          <dd id="clue-count">--</dd>
+        </div>
+        <div class="datum datum--wide">
+          <dt>Elapsed</dt>
+          <dd id="timer">00:00</dd>
+        </div>
+      </dl>
+
+      <nav class="tab-strip" aria-label="Plate series">
+        <span class="tab-strip-label" id="series-label">Series</span>
+        <div class="tab-strip-tabs" role="group" aria-labelledby="series-label">
+          <button type="button" class="tab" data-difficulty="easy">Open<span class="tab-sub">40 clues</span></button>
+          <button type="button" class="tab" data-difficulty="medium" aria-pressed="true">Standard<span class="tab-sub">32 clues</span></button>
+          <button type="button" class="tab" data-difficulty="hard">Severe<span class="tab-sub">26 clues</span></button>
+        </div>
+      </nav>
     </header>
 
-    <main>
-      <div id="board" class="board" role="grid" aria-label="Sudoku board"></div>
+    <main class="plate-body">
+
+      <div class="plate-wrap">
+        <div class="index index--col" id="index-col" aria-hidden="true"></div>
+        <div class="index index--row" id="index-row" aria-hidden="true"></div>
+
+        <div class="plate-frame">
+          <div id="board" class="plate" role="grid" aria-label="Sudoku plate, nine rows of nine cells" aria-rowcount="9" aria-colcount="9"></div>
+
+          <div class="sightline sightline--rank" aria-hidden="true"></div>
+          <div class="sightline sightline--file" aria-hidden="true"></div>
+          <div class="sightline sightline--box" aria-hidden="true"></div>
+
+          <div class="press" id="press" hidden>
+            <p class="press-line">Setting plate</p>
+            <div class="press-bar"><span id="press-fill"></span></div>
+            <p class="press-pct"><span id="press-pct">0</span>% — proving uniqueness</p>
+          </div>
+
+          <div class="stamp" id="stamp" hidden aria-hidden="true">
+            <span class="stamp-word">Solved</span>
+            <span class="stamp-meta" id="stamp-meta"></span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="key-column">
+
+        <section class="key-block" aria-labelledby="census-h">
+          <h2 class="key-h" id="census-h">Digit census</h2>
+          <p class="key-note">Remaining placements. Press a figure to set it in the marked cell.</p>
+          <div class="census" id="census" role="group" aria-labelledby="census-h"></div>
+        </section>
+
+        <section class="key-block" aria-labelledby="key-h">
+          <h2 class="key-h" id="key-h">State key</h2>
+          <ul class="legend">
+            <li class="legend-row"><span class="swatch swatch--given">4</span><span class="legend-t">Set at press — fixed</span></li>
+            <li class="legend-row"><span class="swatch swatch--entered">7</span><span class="legend-t">Entered by hand</span></li>
+            <li class="legend-row"><span class="swatch swatch--conflict">7</span><span class="legend-t">Repeats in its rank, file or box</span></li>
+            <li class="legend-row"><span class="swatch swatch--pencil"><b>1</b><b>5</b><b>9</b></span><span class="legend-t">Pencilled candidates</span></li>
+          </ul>
+          <ul class="family-key" id="family-key" aria-label="Box families"></ul>
+        </section>
+
+        <section class="key-block" aria-labelledby="ops-h">
+          <h2 class="key-h" id="ops-h">Operations</h2>
+          <button type="button" class="op op--switch" id="notes-toggle" aria-pressed="false">
+            <span class="op-name">Pencil</span>
+            <span class="op-state" aria-hidden="true">Off</span>
+          </button>
+          <button type="button" class="op" id="undo">Undo last mark<kbd>Ctrl Z</kbd></button>
+          <button type="button" class="op" id="check">Verify plate</button>
+          <button type="button" class="op" id="reset">Strip to clues</button>
+          <button type="button" class="op op--primary" id="new-game">Set a new plate</button>
+        </section>
+
+      </aside>
     </main>
 
-    <footer>
-      <p>Fill every row, column and 3&times;3 box with the digits 1-9. Use the keyboard (1-9, Backspace/Delete) or click a cell.</p>
+    <footer class="notes-band">
+      <h2 class="notes-label">Notes</h2>
+      <p class="notes-line" id="message" role="status" aria-live="polite">Figures 1&ndash;9 fill a cell. Backspace clears it. Arrow keys walk the plate; hold shift with a figure to pencil it.</p>
+      <p class="notes-meta"><span id="conflict-count">No repeats</span> &middot; <span id="filled-count">0 of 81 cells set</span></p>
     </footer>
+
+    <div class="trim" aria-hidden="true">
+      <p class="trim-caption">Plate <span id="trim-plate">X</span> &middot; 9&times;9 Latin square</p>
+      <ul class="ink-bar">
+        <li class="ink-chip" style="--chip: var(--fam-1)"><span>Viridian</span></li>
+        <li class="ink-chip" style="--chip: var(--fam-2)"><span>Manganese</span></li>
+        <li class="ink-chip" style="--chip: var(--fam-3)"><span>Chromate</span></li>
+        <li class="ink-chip" style="--chip: var(--fam-4)"><span>Cerulean</span></li>
+        <li class="ink-chip" style="--chip: var(--conflict)"><span>Crimson</span></li>
+        <li class="ink-chip" style="--chip: var(--ink)"><span>Key</span></li>
+      </ul>
+    </div>
+
+    <div class="reg" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   </div>
   <script src="script.js"></script>
 </body>
