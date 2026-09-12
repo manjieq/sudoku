@@ -1,0 +1,177 @@
+{
+  "title": "Choose the visual world for Sudoku",
+  "question": "The roll assigned The Wall Chart. Keep it, take an alternate, or re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "The Wall Chart",
+      "kicker": "THE ROLL",
+      "lineage": "the laboratory reference chart pinned to a classroom wall",
+      "thesis": "The board is not a card on a page — it is one large printed reference plate, and every control is chart apparatus printed onto it.",
+      "palette": ["#E4E9E1", "#14171A", "#17458F", "#E8B10C", "#0F6B4F", "#5E3387"],
+      "materials": ["flat process ink on coated chart stock", "halftone tint fields", "hairline keyline rules", "deliberate ink misregistration"],
+      "viewport": "A full-bleed plate: a black masthead band across the top carrying the title in expanded gothic caps, the edition line, the difficulty selector printed as a tab strip and the elapsed counter as a printed readout; beneath it the 81 cells at wall scale, nine boxes tinted as ink families, lettered index tabs A-I across the top and 1-9 down the side; a state key column at the right; a NOTES band typeset along the foot.",
+      "risk": "Nine tinted colour fields behind 81 numerals is a contrast tightrope — past roughly 12% ink the digits lose their footing, and the box structure must be carried by keyline weight too, never by colour alone.",
+      "raised": [
+        {
+          "from": "challenger-greiman-hybrid",
+          "raise": "SUBSTRATE: the sheet is a printed object, not a flat digital fill — halftone tint, paper tooth, and a half-pixel colour offset on the heavy rules where the plates did not quite register."
+        },
+        {
+          "from": "challenger-chaekgeori",
+          "raise": "EMPTY IS AUTHORED: an unfilled cell is never blank. It carries its own faint printed coordinate in the corner, the way an unfilled row on a real chart still shows its ruling."
+        },
+        {
+          "from": "challenger-phosphor-terminal",
+          "raise": "STATE PRINTS ITSELF: no floating toolbar anywhere. Difficulty, clue census, conflict count, elapsed time and every message are typeset into the chart's own masthead, key column and notes band as chart data."
+        },
+        {
+          "from": "challenger-versailles",
+          "raise": "ONE AXIS: masthead, plate and notes band all lock to a single governing centre axis, so the sheet reads as one composition at any width instead of a stack of panels."
+        }
+      ],
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          {"label": "masthead: title, edition, difficulty tabs, clock", "x": 0, "y": 0, "w": 12, "h": 2, "accent": true},
+          {"label": "column index A-I", "x": 1, "y": 2, "w": 8, "h": 1},
+          {"label": "row index 1-9", "x": 0, "y": 3, "w": 1, "h": 6},
+          {"label": "the 81-cell plate", "x": 1, "y": 3, "w": 8, "h": 6, "accent": true},
+          {"label": "state key, census, actions", "x": 9, "y": 2, "w": 3, "h": 7},
+          {"label": "NOTES band", "x": 0, "y": 9, "w": 9, "h": 1}
+        ]
+      }
+    },
+    {
+      "id": "model-pick",
+      "label": "The Solver Trace",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "constraint-solver instrumentation: search trees, propagation logs, candidate bitmask tables",
+      "thesis": "Show the mechanism that actually makes this product true — the backtracking search and its uniqueness proof — running beside the board you are playing.",
+      "palette": ["#F2F2EF", "#16181B", "#2B4C7E", "#2F7D46", "#B02020"],
+      "materials": ["technical document rules", "tabular figures", "candidate bitmask tables", "search-tree rails"],
+      "viewport": "A dense instrument document: search-tree rail down the left, the grid mid-page with live candidate counts inside every empty cell, a bitmask table down the right, and a propagation log running along the foot.",
+      "risk": "This is exactly where a run aimed at an engineering audience predictably lands, and it reads as a debugger — which quietly narrows a page meant for anyone down to people who already like solvers.",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          {"label": "trace header", "x": 0, "y": 0, "w": 12, "h": 1},
+          {"label": "search-tree rail", "x": 0, "y": 1, "w": 3, "h": 9},
+          {"label": "grid under propagation", "x": 3, "y": 1, "w": 6, "h": 7, "accent": true},
+          {"label": "candidate bitmask table", "x": 9, "y": 1, "w": 3, "h": 9},
+          {"label": "propagation log", "x": 3, "y": 8, "w": 6, "h": 2}
+        ]
+      }
+    },
+    {
+      "id": "challenger-brick-instructions",
+      "label": "Brick Build Instructions",
+      "verdict": "competitive",
+      "lineage": "the numbered brick build-instruction booklet",
+      "thesis": "Sky-blue page, keyline ink, oversized numerals and wordless arrows — prior work ghosts back, the piece you just placed arrives bright.",
+      "palette": ["#4FA8DC", "#0D0D0D", "#C8102E", "#F5C518"],
+      "materials": ["keyline ink outlines", "stud-module grid", "1:1 call-out boxes", "dashed guide arrows"],
+      "viewport": "A sky-blue spread ruled to a stud module, the grid as the assembly, given clues ghosted and entered digits arriving bright with an arrow to their seat.",
+      "case": "Wins audience identification outright — everyone has sat on a carpet with one of these, and ghosted-prior vs bright-new is exactly sudoku's given-vs-entered distinction. Loses product clarity: its governing grammar is numbered sequence, and sudoku has no step order, so the arrows and step numerals would teach an order that does not exist.",
+      "risk": "Strip out the sequence and you have removed half the system's grammar; leave it in and the interface lies about the task.",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          {"label": "parts inventory strip", "x": 0, "y": 0, "w": 12, "h": 2},
+          {"label": "step numeral", "x": 0, "y": 2, "w": 2, "h": 2},
+          {"label": "assembly grid", "x": 2, "y": 2, "w": 7, "h": 8, "accent": true},
+          {"label": "1:1 call-out box", "x": 9, "y": 2, "w": 3, "h": 4},
+          {"label": "digit inventory", "x": 9, "y": 6, "w": 3, "h": 4}
+        ]
+      }
+    },
+    {
+      "id": "challenger-variable-font-specimen",
+      "label": "Variable Type Specimen",
+      "verdict": "competitive",
+      "lineage": "the interactive variable-font specimen",
+      "thesis": "The content of this product is 81 numerals, so set it as a living specimen: enormous figures, hairline monospace labels, hierarchy by scale contrast alone.",
+      "palette": ["#FAFAF8", "#0A0A0A", "#FF4D00"],
+      "materials": ["near-white paper", "strict baseline grid", "monospace micro-labels", "live axis readouts"],
+      "viewport": "The grid set as a glyph specimen at enormous size against tiny monospace labels, the timer and census as live coordinate readouts.",
+      "case": "Holds product clarity brilliantly — huge numerals on a strict baseline grid is the most legible thing on this table, and digits genuinely are the content. Loses audience identification: specimen culture belongs to designers, so the page reads as a type artifact rather than a game a stranger would start playing.",
+      "risk": "Generous negative space and no ornament leaves the board with nothing to stand on; done timidly it becomes the clean white card this redesign exists to escape.",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          {"label": "axis readout strip", "x": 0, "y": 0, "w": 12, "h": 1},
+          {"label": "specimen grid", "x": 2, "y": 2, "w": 8, "h": 7, "accent": true},
+          {"label": "glyph inventory", "x": 0, "y": 9, "w": 12, "h": 1}
+        ]
+      }
+    },
+    {
+      "id": "challenger-greiman-hybrid",
+      "label": "Greiman Hybrid Collage",
+      "verdict": "declined",
+      "lineage": "April Greiman hybrid poster, coarse bitmap at wall scale",
+      "thesis": "The page as one deep collage of angled, ghosted layers you lift to the top of the stack.",
+      "palette": ["#0FB6B6", "#FF2D9B", "#F7F5EF"],
+      "materials": ["coarse bitmap dither", "angled type ramps", "layered blend modes"],
+      "viewport": "Angled ramps of type over ghosted overlapping layers, magenta marking the live one.",
+      "case": "Loses both axes. Puzzle players do not live in 1980s hybrid-poster culture, and ghosted overlapping layers set at an angle over a 9x9 of numerals destroys the scanning the whole task depends on.",
+      "kept": "Accepting the substrate's own texture as a full-scale material rather than a decorative overlay.",
+      "risk": "Rotation and transparency are the two things a scanned grid cannot survive."
+    },
+    {
+      "id": "challenger-chaekgeori",
+      "label": "Chaekgeori Reverse Perspective",
+      "verdict": "declined",
+      "lineage": "painted scholar's-shelf screens built in reverse perspective",
+      "thesis": "Nine boxes as painted shelf compartments whose far edges are wider than their near ones, opening toward you.",
+      "palette": ["#2E6F5E", "#C1442A", "#F0EAD8"],
+      "materials": ["mineral pigment on silk", "outlined objects", "no cast shadow"],
+      "viewport": "A cabinet of nine compartments widening as it deepens, each holding its filled digits as inventory.",
+      "case": "Loses both axes. The cultural distance is total for a general audience, and reverse perspective makes cells physically unequal in size, which breaks the uniform scan a 9x9 is entirely built on.",
+      "kept": "Every compartment is a container with a painted back, so an empty box is a surface rather than an absence.",
+      "risk": "The one device that makes it remarkable is the one device the grid cannot tolerate."
+    },
+    {
+      "id": "challenger-phosphor-terminal",
+      "label": "Phosphor Terminal",
+      "verdict": "declined",
+      "lineage": "green-phosphor terminal in a midnight machine room",
+      "thesis": "The whole game as one scrolling typed transcript on curved glass.",
+      "palette": ["#0A0F0A", "#41FF6B", "#1C4A24"],
+      "materials": ["P1 phosphor glow", "scanlines", "afterimage trails", "bitmap monospace"],
+      "viewport": "80 columns of green on near-black, the grid drawn in characters, the cursor breathing.",
+      "case": "Loses both axes. This is the category's own stock rebellion — the predictable opposite of the clean white card — and bloom plus afterimage trails over 81 digits that change constantly is legibility noise dressed as atmosphere.",
+      "kept": "System state prints itself as first-class content instead of being parked in chrome.",
+      "risk": "Every device that makes the world feel alive also smears the numerals."
+    },
+    {
+      "id": "challenger-versailles",
+      "label": "Versailles Bosquet Vistas",
+      "verdict": "declined",
+      "lineage": "the gardens of Versailles as choreographed axial landscape",
+      "thesis": "Parterres, sightlines and hydraulic sequence as the page's organising system.",
+      "palette": ["#3E5B35", "#C9BE9B", "#B8912F"],
+      "materials": ["clipped hedge", "raked gravel", "gilt bronze", "marble"],
+      "viewport": "Mirrored parterre geometry along one axis, fountains waking in sequence.",
+      "case": "Loses both axes. There is no thread at all between a garden promenade and a logic puzzle, and mirrored symmetry over a grid whose whole point is that no two regions repeat actively misdescribes the task.",
+      "kept": "One governing axis holding an entire composition together so a fixed frame reads as deliberate.",
+      "risk": "Nothing in the world touches the product's mechanism."
+    }
+  ],
+  "reroll": { "registers": ["safer", "bolder"] },
+  "buildPath": { "value": "code" },
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "The sudoku page every sudoku site ships, executed impeccably: white card, soft shadow, blue selected cell, red conflict.",
+    "palette": ["#FFFFFF", "#111827", "#2563EB", "#DC2626"],
+    "materials": ["rounded card", "soft elevation shadow", "system UI face"],
+    "viewport": "A centred white card on light grey holding a bordered 9x9, a button row above it and a number pad below.",
+    "risk": "Indistinguishable from every other sudoku page by design — including the one this repo already has."
+  },
+  "steer": true
+}

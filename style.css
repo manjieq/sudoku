@@ -1,160 +1,1062 @@
-:root {
-  color-scheme: light;
-  --ink: #1a1a1a;
-  --given: #1a1a1a;
-  --user-input: #2457c5;
-  --error: #c62828;
-  --line-thin: #ccc;
-  --line-thick: #222;
-  --bg: #f4f4f4;
-  --panel: #fff;
-  --accent: #2457c5;
+/* Archivo, variable on both width and weight. Self-hosted: the width axis
+   IS this design's hierarchy, and a CDN that is unreachable offline would
+   collapse the expanded titling and the condensed data layer into one
+   identical system face. The page has to run from file:// forever. */
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url("fonts/archivo-latin-var.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url("fonts/archivo-latin-ext-var.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
-* {
-  box-sizing: border-box;
+/* =========================================================================
+   PLATE IX — a sudoku set as a printed laboratory reference chart.
+   Flat process ink on chart stock. The board is not a card on a page:
+   it is the sheet, and every control is apparatus printed onto it.
+   ========================================================================= */
+
+:root {
+  color-scheme: light;
+
+  /* --- Substrate and ink ------------------------------------------------ */
+  --stock: #e4e9e1;
+  --stock-deep: #d5dcd2;
+  --stock-edge: #c3ccc0;
+  --ink: #14171a;
+  --ink-2: #4a5450;
+  --ink-3: #5f6a65;
+
+  /* --- Working inks ----------------------------------------------------- */
+  --entry: #17357f;        /* the hand: figures entered by the player      */
+  --conflict: #9e0f18;     /* reserved absolutely for repeats              */
+  --conflict-bright: #b4121c;
+  --gold: #e8b10c;         /* masthead accent and active apparatus         */
+
+  /* Reversed out of the ink band */
+  --band-2: color-mix(in srgb, var(--stock) 78%, var(--ink));
+  --band-3: color-mix(in srgb, var(--stock) 55%, var(--ink));
+  --paper: #ffffff;        /* print only: real paper, not chart stock       */
+
+  /* --- Box families: four plate inks, rotated so no two boxes touch ----- */
+  --fam-1: #00794f;        /* viridian  */
+  --fam-2: #6a2ea0;        /* manganese */
+  --fam-3: #ab7f00;        /* chromate  */
+  --fam-4: #12617f;        /* cerulean  */
+
+  --tint: 17%;
+  --tint-hot: 24%;
+  --tint-given: 28%;
+  --tint-chip: 30%;
+
+  /* --- Type ------------------------------------------------------------- */
+  --face: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* --- Rules ------------------------------------------------------------ */
+  --hair: 1px solid color-mix(in srgb, var(--ink) 26%, transparent);
+  --rule: 2px solid var(--ink);
+  --heavy: 3px solid var(--ink);
+
+  /* --- Motion: ink arriving on paper ------------------------------------ */
+  --set: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Width and weight are the whole hierarchy: expanded for titling,
+   condensed for the data layer. One family, two extreme registers. */
+.u-expanded { font-variation-settings: "wdth" 118, "wght" 800; }
+.u-narrow   { font-variation-settings: "wdth" 68,  "wght" 600; }
+
+* { box-sizing: border-box; }
+
+/* .stamp, .press, .pencil and .coord are all display-typed, so the plain
+   [hidden] attribute would lose to them without this. */
+[hidden] { display: none !important; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  background: var(--stock-deep);
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 2rem 1rem;
-  background: var(--bg);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--stock-deep);
   color: var(--ink);
+  font-family: var(--face);
+  font-synthesis-weight: none;
+  font-variant-numeric: tabular-nums lining-nums;
 }
 
-.app {
-  width: 100%;
-  max-width: 520px;
-  background: var(--panel);
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+::selection { background: var(--gold); color: var(--ink); }
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
 }
 
-h1 {
-  margin: 0 0 1rem;
-  text-align: center;
-}
+* { scrollbar-color: var(--ink-3) var(--stock-deep); scrollbar-width: thin; }
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: var(--stock-deep); }
+::-webkit-scrollbar-thumb { background: var(--ink-3); border: 3px solid var(--stock-deep); }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-2); }
 
-.controls {
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 40;
+  background: var(--ink);
+  color: var(--stock);
+  padding: 0.7rem 1.1rem;
+  font-variation-settings: "wdth" 80, "wght" 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+.skip:focus { left: 0; }
+
+/* =========================================================================
+   THE SHEET
+   ========================================================================= */
+
+.sheet {
+  position: relative;
+  min-height: 100vh;
+  max-width: 1120px;
+  margin: 0 auto;
+  background: var(--stock);
+  border-left: 1px solid var(--stock-edge);
+  border-right: 1px solid var(--stock-edge);
   display: flex;
+  flex-direction: column;
+}
+
+/* Paper tooth. The sheet is a printed object, not a flat digital fill. */
+.sheet::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.16;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23t)'/%3E%3C/svg%3E");
+}
+
+/* =========================================================================
+   MASTHEAD — the black band. All state is typeset into the plate itself,
+   so there is no toolbar anywhere on this page.
+   ========================================================================= */
+
+.masthead {
+  position: relative;
+  background: var(--ink);
+  color: var(--stock);
+  padding: clamp(0.8rem, 1.4vw, 1.1rem) clamp(1rem, 3vw, 2.5rem) 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: clamp(1rem, 2.5vw, 3rem);
+  row-gap: 0;
+  align-items: end;
+}
+
+/* Plate misregistration: the gold ran a hair low on the press. */
+.masthead::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 3px;
+  background: var(--gold);
+  transform: translateX(2px);
+}
+
+.chart-title {
+  margin: 0;
+  font-size: clamp(2.4rem, 6.4vw, 4.6rem);
+  line-height: 0.8;
+  font-variation-settings: "wdth" 125, "wght" 900;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+.chart-standfirst {
+  margin: 0.6rem 0 0;
+  max-width: 54ch;
+  font-size: clamp(0.8rem, 1.05vw, 0.95rem);
+  line-height: 1.45;
+  font-variation-settings: "wdth" 88, "wght" 400;
+  color: var(--band-2);
+}
+
+.masthead-data {
+  display: flex;
+  gap: clamp(1rem, 2vw, 2.25rem);
+  margin: 0;
+  padding: 0 0 0.35rem;
+}
+
+.datum { min-width: 0; }
+
+.datum dt {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-variation-settings: "wdth" 72, "wght" 600;
+  color: var(--band-3);
+  margin-bottom: 0.28rem;
+}
+
+.datum dd {
+  margin: 0;
+  font-size: clamp(1.15rem, 2vw, 1.65rem);
+  line-height: 1;
+  font-variation-settings: "wdth" 108, "wght" 700;
+  color: var(--stock);
+}
+
+.datum--wide dd { color: var(--gold); }
+
+/* --- Series tab strip ---------------------------------------------------- */
+
+.tab-strip {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.9rem;
+  margin-top: clamp(0.7rem, 1.2vw, 0.9rem);
   flex-wrap: wrap;
-  gap: 0.5rem;
+}
+
+.tab-strip-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-variation-settings: "wdth" 72, "wght" 600;
+  color: var(--band-3);
+  padding-bottom: 0.7rem;
+}
+
+.tab-strip-tabs { display: flex; gap: 3px; }
+
+.tab {
+  appearance: none;
+  border: 0;
+  background: color-mix(in srgb, var(--stock) 16%, var(--ink));
+  color: color-mix(in srgb, var(--stock) 72%, var(--ink));
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-variation-settings: "wdth" 92, "wght" 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 0.5rem 1.05rem 0.6rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  transition: background var(--set), color var(--set);
+}
+
+.tab-sub {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  font-variation-settings: "wdth" 70, "wght" 500;
+  opacity: 0.9;
+}
+
+.tab:not([aria-pressed="true"]):hover { background: color-mix(in srgb, var(--stock) 26%, var(--ink)); color: var(--stock); }
+
+.tab[aria-pressed="true"] {
+  background: var(--stock);
+  color: var(--ink);
+  padding-bottom: 0.95rem;
+  margin-bottom: -0.2rem;
+}
+
+.tab[aria-pressed="true"] .tab-sub { opacity: 1; color: var(--ink-2); }
+
+/* =========================================================================
+   PLATE BODY
+   ========================================================================= */
+
+.plate-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(228px, 17.5rem);
+  gap: clamp(1.25rem, 2.6vw, 2.5rem);
+  padding: clamp(1rem, 1.8vw, 1.5rem) clamp(1rem, 3vw, 2.5rem);
+  align-items: start;
+  align-content: start;
+}
+
+/* --- Index rails + plate share one grid so the tabs align exactly -------- */
+
+.plate-wrap {
+  display: grid;
+  grid-template-columns: clamp(1.3rem, 2.4vw, 2.1rem) minmax(0, 1fr);
+  grid-template-rows: clamp(1.3rem, 2.4vw, 2.1rem) auto;
+  max-width: max(17rem, min(100%, calc(100vh - 19.5rem)));
+  margin-inline: 0;
+  width: 100%;
+}
+
+.index { display: grid; }
+
+.index--col {
+  grid-column: 2;
+  grid-row: 1;
+  grid-template-columns: repeat(9, 1fr);
+}
+
+.index--row {
+  grid-column: 1;
+  grid-row: 2;
+  grid-template-rows: repeat(9, 1fr);
+}
+
+.tick {
+  display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.75rem;
+  font-size: clamp(0.7rem, 1.1vw, 0.78rem);
+  letter-spacing: 0.1em;
+  font-variation-settings: "wdth" 76, "wght" 700;
+  color: var(--ink-3);
+  transition: background var(--set), color var(--set);
 }
 
-.controls select,
-.controls button {
-  font-size: 0.95rem;
-  padding: 0.4rem 0.75rem;
-  border-radius: 6px;
-  border: 1px solid #bbb;
-  background: #fafafa;
-  cursor: pointer;
+.index--col .tick { align-items: flex-end; padding-bottom: 0.3rem; }
+.index--row .tick { justify-content: flex-end; padding-right: 0.42rem; }
+
+/* The signature: focusing a cell drives full-strength ink into exactly
+   its two index tabs. Peer highlighting as chart apparatus. */
+.tick.is-live {
+  background: var(--ink);
+  color: var(--gold);
 }
 
-.controls button:hover {
-  background: #eee;
+.plate-frame {
+  grid-column: 2;
+  grid-row: 2;
+  position: relative;
+  border: var(--heavy);
+  background: var(--stock);
+  aspect-ratio: 1;
 }
 
-.status {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  font-variant-numeric: tabular-nums;
+/* The second misregistration — the viridian plate seated 3px off. */
+.plate-frame::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border: 3px solid var(--fam-1);
+  transform: translate(3px, 3px);
+  z-index: -1;
 }
 
-#message {
-  font-weight: 600;
-  min-height: 1.2em;
-}
-
-#message.win {
-  color: #1b8a3a;
-}
-
-#message.error {
-  color: var(--error);
-}
-
-.board {
+.plate {
   display: grid;
-  grid-template-columns: repeat(9, 1fr);
   grid-template-rows: repeat(9, 1fr);
-  width: min(90vw, 450px);
-  height: min(90vw, 450px);
-  margin: 0 auto;
-  border: 2px solid var(--line-thick);
-  background: var(--panel);
+  height: 100%;
+}
+
+.plate-row { display: grid; grid-template-columns: repeat(9, 1fr); }
+
+/* --- The cell ------------------------------------------------------------ */
+
+/* Every cell inherits its box's plate ink through one custom property, so
+   the whole ladder is derived rather than enumerated. Density is carried by
+   a real halftone screen over a light flat tint — flat ink for givenness,
+   screen frequency for the box under the mark, so the two states never
+   compete on the same axis. */
+.cell {
+  --cell-ink: var(--fam);
+  --cell-tint: color-mix(in srgb, var(--fam) var(--tint), var(--stock));
+  --cell-tint-hot: color-mix(in srgb, var(--fam) var(--tint-hot), var(--stock));
+  --cell-tint-given: color-mix(in srgb, var(--fam) var(--tint-given), var(--stock));
+  --cell-dot: color-mix(in srgb, var(--fam) 60%, transparent);
+  --screen: 3px;
+  --dot: 0.5px;
 }
 
 .cell {
-  width: 100%;
-  height: 100%;
-  border: 1px solid var(--line-thin);
-  text-align: center;
-  font-size: 1.3rem;
-  padding: 0;
-  background: transparent;
-  color: var(--user-input);
-  outline: none;
-  -moz-appearance: textfield;
-}
-
-.cell::-webkit-outer-spin-button,
-.cell::-webkit-inner-spin-button {
-  -webkit-appearance: none;
+  position: relative;
+  appearance: none;
   margin: 0;
+  padding: 0;
+  font-family: inherit;
+  border: var(--hair);
+  border-width: 0 1px 1px 0;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  background-color: var(--cell-tint);
+  /* A two-pass offset halftone, under the figure and never over it. */
+  background-image:
+    radial-gradient(var(--cell-dot) var(--dot), transparent calc(var(--dot) + 0.1px)),
+    radial-gradient(var(--cell-dot) var(--dot), transparent calc(var(--dot) + 0.1px));
+  background-size: var(--screen) var(--screen), var(--screen) var(--screen);
+  background-position: 0 0, calc(var(--screen) / 2) calc(var(--screen) / 2);
+  color: var(--entry);
+  font-size: clamp(1.15rem, 4.4vmin, 2.5rem);
+  font-variation-settings: "wdth" 100, "wght" 600;
+  line-height: 1;
+  transition: background-color var(--set);
 }
 
-.cell[data-col="2"],
-.cell[data-col="5"] {
-  border-right: 2px solid var(--line-thick);
+/* Box boundaries carry the structure in rule weight, so the colour
+   families never have to do that work alone. */
+.cell[data-col="2"], .cell[data-col="5"] { border-right: var(--rule); }
+.cell[data-row="2"], .cell[data-row="5"] { border-bottom: var(--rule); }
+.cell[data-col="8"] { border-right: 0; }
+.cell[data-row="8"] { border-bottom: 0; }
+
+.cell:hover:not(.marked) { background-color: var(--cell-tint-hot); }
+
+/* The unfilled cell is never blank: it still shows its own ruling. */
+.coord {
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  font-size: clamp(0.48rem, 1.05vmin, 0.58rem);
+  letter-spacing: 0.06em;
+  font-variation-settings: "wdth" 70, "wght" 600;
+  color: color-mix(in srgb, var(--cell-ink) 45%, var(--ink));
+  pointer-events: none;
 }
 
-.cell[data-row="2"],
-.cell[data-row="5"] {
-  border-bottom: 2px solid var(--line-thick);
+.figure {
+  position: relative;
+  z-index: 1;
+  display: block;
 }
 
+.cell.is-set .figure { animation: ink 170ms cubic-bezier(0.16, 1, 0.3, 1); }
+
+/* Ink arriving on paper: it lands a touch large and wet, then bites. */
+@keyframes ink {
+  from { opacity: 0.15; transform: scale(1.3); filter: blur(3px); }
+  to   { opacity: 1;    transform: scale(1);   filter: blur(0); }
+}
+
+/* Set at press: machine-set, black, expanded, heavier than any hand. */
 .cell.given {
-  color: var(--given);
-  font-weight: 700;
-  background: #f0f0f0;
+  color: var(--ink);
+  font-variation-settings: "wdth" 112, "wght" 800;
+  background-color: var(--cell-tint-given);
+  cursor: default;
 }
 
-.cell:focus {
-  background: #dbe7ff;
+.cell.given .coord { display: none; }
+
+/* Repeats. Carried by colour AND by a printed proofreader's rule, so the
+   state never depends on hue alone. */
+.cell.conflict { color: var(--conflict); }
+
+.cell.conflict .figure::after {
+  content: "";
+  position: absolute;
+  left: -6%;
+  right: -6%;
+  bottom: -0.14em;
+  height: 0.09em;
+  background: var(--conflict);
+  box-shadow: 0 0.11em 0 var(--conflict);
 }
 
-.cell.given:focus {
-  background: #dcdcdc;
+.cell.marked {
+  background-color: var(--stock);
+  background-image: none;
+  box-shadow: inset 0 0 0 3px var(--ink);
+  z-index: 2;
 }
 
-.cell.peer {
-  background: #eef3ff;
+.cell.marked .coord { color: var(--ink-2); }
+
+.cell:focus-visible { outline: 0; }
+.cell:focus-visible.marked { box-shadow: inset 0 0 0 3px var(--ink), inset 0 0 0 6px var(--gold); }
+
+/* The rank and the file are ruled, the way a reference chart leads your eye
+   to an entry. Ink and line, never a wash of colour over the plate. */
+.sightline {
+  position: absolute;
+  pointer-events: none;
+  z-index: 3;
 }
 
-.cell.given.peer {
-  background: #e3e3e3;
+.sightline--rank {
+  left: 0;
+  right: 0;
+  height: calc(100% / 9);
+  top: calc(var(--mark-row, 0) * 100% / 9);
+  border-top: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
 }
 
-.cell.conflict {
-  color: var(--error);
-  background: #fbe1e1;
+.sightline--file {
+  top: 0;
+  bottom: 0;
+  width: calc(100% / 9);
+  left: calc(var(--mark-col, 0) * 100% / 9);
+  border-left: 2px solid var(--ink);
+  border-right: 2px solid var(--ink);
 }
 
-footer {
-  margin-top: 1rem;
+.sightline--box {
+  z-index: 2;
+  top: calc(var(--mark-box-row, 0) * 100% / 3);
+  left: calc(var(--mark-box-col, 0) * 100% / 3);
+  width: calc(100% / 3);
+  height: calc(100% / 3);
+  border: 3px solid var(--gold);
+}
+
+/* --- Pencilled candidates: set like isotope data on an element tile ----- */
+
+.pencil {
+  position: absolute;
+  inset: 14% 10% 10%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  font-size: clamp(0.48rem, 1.4vmin, 0.7rem);
+  font-variation-settings: "wdth" 74, "wght" 700;
+  color: color-mix(in srgb, var(--cell-ink) 42%, var(--ink));
+  pointer-events: none;
+}
+
+.pencil b { display: grid; place-items: center; font-weight: inherit; }
+.pencil b:empty::after { content: ""; }
+
+/* --- Press state: generation is real work and says so ------------------- */
+
+.press {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 0.9rem;
+  background: color-mix(in srgb, var(--stock) 92%, transparent);
+  padding: 2rem;
   text-align: center;
-  font-size: 0.85rem;
-  color: #666;
+}
+
+.press-line {
+  margin: 0;
+  font-size: clamp(1.1rem, 3vw, 1.9rem);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-variation-settings: "wdth" 108, "wght" 800;
+}
+
+.press-bar {
+  width: min(20rem, 60%);
+  height: 10px;
+  border: var(--rule);
+  padding: 2px;
+}
+
+.press-bar span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--ink);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 120ms linear;
+}
+
+.press-pct {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-variation-settings: "wdth" 72, "wght" 600;
+  color: var(--ink-2);
+}
+
+/* --- The overprint ------------------------------------------------------ */
+
+.stamp {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: grid;
+  place-content: center;
+  gap: 0.45rem;
+  pointer-events: none;
+  color: var(--conflict-bright);
+  transform: rotate(-6.5deg);
+  animation: strike 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stamp-word {
+  mix-blend-mode: multiply;
+  border: 6px double currentColor;
+  padding: 0.25em 0.5em 0.3em;
+  font-size: clamp(2.2rem, 11vmin, 5.5rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-variation-settings: "wdth" 118, "wght" 900;
+  text-align: center;
+}
+
+.stamp-meta {
+  justify-self: center;
+  background: var(--conflict-bright);
+  color: var(--stock);
+  padding: 0.4em 0.9em 0.45em;
+  text-align: center;
+  font-size: clamp(0.66rem, 1.9vmin, 0.92rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-variation-settings: "wdth" 76, "wght" 700;
+}
+
+@keyframes strike {
+  from { opacity: 0.1; transform: rotate(-13deg) scale(1.9); filter: blur(6px); }
+  to   { opacity: 1;   transform: rotate(-6.5deg) scale(1);  filter: blur(0); }
+}
+
+/* =========================================================================
+   KEY COLUMN — census, state key, operations
+   ========================================================================= */
+
+.key-column {
+  display: grid;
+  gap: clamp(0.75rem, 1.2vw, 0.9rem);
+  align-content: start;
+  min-width: 0;
+}
+
+.key-block {
+  border-top: var(--rule);
+  padding-top: 0.45rem;
+}
+
+.key-h {
+  margin: 0 0 0.4rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-variation-settings: "wdth" 74, "wght" 700;
+}
+
+.key-note {
+  margin: 0 0 0.55rem;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  font-variation-settings: "wdth" 86, "wght" 400;
+  color: var(--ink-2);
+  max-width: 34ch;
+}
+
+/* --- Digit census -------------------------------------------------------- */
+
+.census {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+}
+
+.tally {
+  appearance: none;
+  border: var(--hair);
+  background: var(--stock);
+  font-family: inherit;
+  color: var(--entry);
+  cursor: pointer;
+  padding: 0.28rem 0.3rem 0.22rem;
+  display: grid;
+  justify-items: center;
+  gap: 0.15rem;
+  transition: background var(--set), color var(--set), border-color var(--set);
+}
+
+.tally-fig {
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  line-height: 1;
+  font-variation-settings: "wdth" 108, "wght" 700;
+}
+
+.tally-left {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  font-variation-settings: "wdth" 70, "wght" 600;
+  color: var(--ink-3);
+}
+
+.tally:hover { background: var(--ink); color: var(--gold); border-color: var(--ink); }
+.tally:hover .tally-left { color: color-mix(in srgb, var(--gold) 70%, var(--ink)); }
+
+.tally.spent {
+  color: var(--ink-3);
+  background: color-mix(in srgb, var(--ink) 7%, var(--stock));
+  cursor: default;
+}
+.tally.spent .tally-fig { font-variation-settings: "wdth" 108, "wght" 400; }
+
+/* --- State key ----------------------------------------------------------- */
+
+.legend { list-style: none; margin: 0 0 0.6rem; padding: 0; display: grid; gap: 0.22rem; }
+
+.legend-row { display: flex; align-items: center; gap: 0.6rem; }
+
+.swatch {
+  flex: none;
+  width: 1.7rem;
+  height: 1.7rem;
+  border: var(--hair);
+  display: grid;
+  place-items: center;
+  font-size: 0.95rem;
+  line-height: 1;
+  background-image:
+    radial-gradient(color-mix(in srgb, var(--fam-4) 60%, transparent) 0.5px, transparent 0.6px),
+    radial-gradient(color-mix(in srgb, var(--fam-4) 60%, transparent) 0.5px, transparent 0.6px);
+  background-size: 3px 3px, 3px 3px;
+  background-position: 0 0, 1.5px 1.5px;
+  background-color: color-mix(in srgb, var(--fam-4) var(--tint), var(--stock));
+}
+
+.swatch--given {
+  color: var(--ink);
+  font-variation-settings: "wdth" 112, "wght" 800;
+  background-color: color-mix(in srgb, var(--fam-4) var(--tint-given), var(--stock));
+}
+.swatch--entered { color: var(--entry); font-variation-settings: "wdth" 100, "wght" 600; }
+.swatch--conflict { color: var(--conflict); font-variation-settings: "wdth" 100, "wght" 600; border-bottom: 2px solid var(--conflict); }
+
+.swatch--pencil {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-content: center;
+  font-size: 0.5rem;
+  font-variation-settings: "wdth" 74, "wght" 700;
+  color: color-mix(in srgb, var(--fam-4) 45%, var(--ink));
+}
+.swatch--pencil b { font-weight: inherit; }
+
+.legend-t {
+  font-size: 0.8rem;
+  line-height: 1.35;
+  font-variation-settings: "wdth" 86, "wght" 400;
+  color: var(--ink-2);
+}
+
+/* --- Family key: the box inks, and which one is live -------------------- */
+
+.family-key {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 2px;
+}
+
+.family-chip {
+  height: 1.5rem;
+  border: var(--hair);
+  background-color: color-mix(in srgb, var(--fam) var(--tint-chip), var(--stock));
+  background-image:
+    radial-gradient(color-mix(in srgb, var(--fam) 60%, transparent) 0.5px, transparent 0.6px),
+    radial-gradient(color-mix(in srgb, var(--fam) 60%, transparent) 0.5px, transparent 0.6px);
+  background-size: 3px 3px, 3px 3px;
+  background-position: 0 0, 1.5px 1.5px;
+  display: grid;
+  place-items: center;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  font-variation-settings: "wdth" 70, "wght" 700;
+  color: color-mix(in srgb, var(--fam) 40%, var(--ink));
+  transition: background-color var(--set), color var(--set);
+}
+
+.family-chip.is-live {
+  background-image: none;
+  background-color: var(--fam);
+  color: var(--stock);
+  border-color: var(--fam);
+}
+
+/* --- Operations ---------------------------------------------------------- */
+
+.op {
+  appearance: none;
+  width: 100%;
+  border: 0;
+  border-top: var(--hair);
+  background: var(--stock);
+  font-family: inherit;
+  color: var(--ink);
+  text-align: left;
+  padding: 0.3rem 0.55rem;
+  cursor: pointer;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-variation-settings: "wdth" 84, "wght" 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  transition: background var(--set), color var(--set);
+}
+
+.op:first-of-type { border-top: 0; }
+
+.op:hover { background: var(--ink); color: var(--stock); }
+
+.op:disabled { color: var(--ink-3); cursor: default; }
+.op:disabled:hover { background: var(--stock); color: var(--ink-3); }
+
+.op kbd {
+  font-family: inherit;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  font-variation-settings: "wdth" 70, "wght" 600;
+  color: var(--ink-3);
+  background: var(--stock);
+  border: var(--hair);
+  padding: 0.15rem 0.35rem;
+}
+.op:hover kbd { background: var(--ink); color: var(--stock); border-color: color-mix(in srgb, var(--stock) 45%, transparent); }
+.op:disabled:hover kbd { background: var(--stock); color: var(--ink-3); border-color: color-mix(in srgb, var(--ink) 26%, transparent); }
+
+.op--primary {
+  background: var(--ink);
+  color: var(--stock);
+  margin-top: 0.35rem;
+  padding-inline: 0.7rem;
+  border-top: 0;
+}
+.op--primary:hover { background: var(--entry); color: var(--stock); }
+
+.op--switch .op-state {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  border: var(--hair);
+  padding: 0.15rem 0.45rem;
+  color: var(--ink-3);
+}
+
+.op--switch[aria-pressed="true"] { background: var(--gold); }
+.op--switch[aria-pressed="true"]:hover { background: var(--gold); color: var(--ink); }
+.op--switch[aria-pressed="true"] .op-state { background: var(--ink); color: var(--gold); border-color: var(--ink); }
+
+/* =========================================================================
+   NOTES BAND — the foot of the sheet
+   ========================================================================= */
+
+.notes-band {
+  border-top: var(--heavy);
+  padding: 0.6rem clamp(1rem, 3vw, 2.5rem) clamp(0.9rem, 1.6vw, 1.2rem);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: clamp(0.8rem, 2vw, 2rem);
+  align-items: baseline;
+}
+
+.notes-label {
+  margin: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-variation-settings: "wdth" 72, "wght" 700;
+  color: var(--ink-3);
+}
+
+.notes-line {
+  margin: 0;
+  font-size: clamp(0.82rem, 1.15vw, 0.95rem);
+  line-height: 1.4;
+  font-variation-settings: "wdth" 92, "wght" 500;
+  max-width: 72ch;
+}
+
+.notes-line.is-fault { color: var(--conflict); font-variation-settings: "wdth" 92, "wght" 700; }
+.notes-line.is-clear { color: var(--fam-1); font-variation-settings: "wdth" 92, "wght" 700; }
+
+.notes-meta {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-variation-settings: "wdth" 72, "wght" 600;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+/* =========================================================================
+   THE TRIM — evidence of the press that made the sheet
+   ========================================================================= */
+
+.trim {
+  border-top: var(--hair);
+  padding: 0.55rem clamp(1rem, 3vw, 2.5rem) clamp(1rem, 2vw, 1.4rem);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem clamp(1rem, 3vw, 2.5rem);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.trim-caption {
+  margin: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  font-variation-settings: "wdth" 70, "wght" 600;
+  color: var(--ink-3);
+}
+
+.ink-bar {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+
+/* Each swatch is a solid impression of one plate, labelled beneath in the
+   colour it prints — the bar a pressman reads to check ink density. */
+.ink-chip {
+  min-width: 2.6rem;
+  padding: 0.8rem 0.45rem 0;
+  border-top: 0.8rem solid var(--chip);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-variation-settings: "wdth" 66, "wght" 600;
+  color: var(--ink-3);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.reg {
+  position: absolute;
+  inset: clamp(0.35rem, 0.9vw, 0.7rem);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.reg i {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  opacity: 0.5;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Cg fill='none' stroke='%2314171a' stroke-width='1'%3E%3Ccircle cx='9' cy='9' r='4.5'/%3E%3Cpath d='M9 0v5M9 13v5M0 9h5M13 9h5'/%3E%3C/g%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+.reg i:nth-child(1) { top: 0; left: 0; }
+.reg i:nth-child(2) { top: 0; right: 0; }
+.reg i:nth-child(3) { bottom: 0; left: 0; }
+.reg i:nth-child(4) { bottom: 0; right: 0; }
+
+/* The top two crosses fall on the black masthead, so they print in stock. */
+.reg i:nth-child(1),
+.reg i:nth-child(2) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Cg fill='none' stroke='%23e4e9e1' stroke-width='1'%3E%3Ccircle cx='9' cy='9' r='4.5'/%3E%3Cpath d='M9 0v5M9 13v5M0 9h5M13 9h5'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* =========================================================================
+   ADAPTATION — the sheet folds, the apparatus stays printed on it
+   ========================================================================= */
+
+@media (max-width: 860px) {
+  /* The coordinate would clamp to ~6.7px here. An unreadable coordinate is
+     worse than none; the cell's own ruling still carries the empty state. */
+  .coord { display: none; }
+}
+
+@media (max-width: 960px) {
+  .plate-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .plate-wrap { max-width: 100%; margin-inline: auto; }
+
+  .key-column {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .key-block:first-child { grid-column: 1 / -1; }
+
+  .census { grid-template-columns: repeat(9, 1fr); }
+  .tally { padding: 0.55rem 0.2rem 0.4rem; min-height: 3rem; align-content: center; }
+}
+
+@media (max-width: 640px) {
+  .masthead {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .masthead-data {
+    padding-top: 0.5rem;
+    gap: 1.5rem;
+  }
+
+  .chart-standfirst { max-width: none; }
+
+  .key-column { grid-template-columns: minmax(0, 1fr); }
+
+  .plate-wrap { max-width: 100%; }
+
+  .notes-band {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.45rem;
+  }
+
+  .trim { justify-content: flex-start; gap: 0.7rem 1.25rem; }
+  .trim-caption { order: 2; }
+  /* The bar keeps its patches and drops its labels: six ink names will not
+     sit on one line at this width, and a wrapped colour bar is not one. */
+  .ink-bar { flex: 1; }
+  .ink-chip { flex: 1; min-width: 0; padding: 0.8rem 0 0; }
+  .ink-chip span { display: none; }
+  .tab-strip { flex-wrap: nowrap; gap: 0.65rem; }
+  .tab-strip-label { padding-bottom: 0.85rem; }
+  .tab-strip-tabs { flex: 1; min-width: 0; }
+  .tab { flex: 1; min-width: 0; align-items: center; text-align: center; }
+}
+
+@media (hover: none) {
+  .cell:hover { background-color: var(--cell-tint); }
+  .op:hover { background: var(--stock); color: var(--ink); }
+  .op--primary:hover { background: var(--ink); color: var(--stock); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media print {
+  .sheet::after, .key-column, .tab-strip { display: none; }
+  body { background: var(--paper); }
 }
