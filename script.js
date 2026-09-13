@@ -197,23 +197,34 @@ function wireControls() {
   el("check").addEventListener("click", verifyPlate);
   undoBtn.addEventListener("click", undo);
 
-  notesToggleEl.addEventListener("click", () => {
-    pencilMode = !pencilMode;
-    notesToggleEl.setAttribute("aria-pressed", String(pencilMode));
-    notesToggleEl.querySelector(".op-state").textContent = pencilMode ? "On" : "Off";
-    say(
-      pencilMode
-        ? "Pencil on. Figures now go down as candidates; hold shift to set one outright."
-        : "Pencil off. Figures go down as entries."
-    );
-  });
+  notesToggleEl.addEventListener("click", togglePencil);
 
   document.addEventListener("keydown", (event) => {
     if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "z") {
       event.preventDefault();
       undo();
     }
+    // P works from anywhere on the sheet, not just the plate: the switch it
+    // throws is the one in Operations, so it should not need the board focused.
+    if (!event.ctrlKey && !event.metaKey && !event.altKey && event.key.toLowerCase() === "p") {
+      event.preventDefault();
+      togglePencil();
+    }
   });
+}
+
+// The one path into pencil mode: the Operations switch and the P hotkey both
+// come through here, so the button's pressed state, its label and the notes
+// line can never drift apart from the flag they describe.
+function togglePencil() {
+  pencilMode = !pencilMode;
+  notesToggleEl.setAttribute("aria-pressed", String(pencilMode));
+  notesToggleEl.querySelector(".op-state").textContent = pencilMode ? "On" : "Off";
+  say(
+    pencilMode
+      ? "Pencil on. Figures now go down as candidates; hold shift to set one outright."
+      : "Pencil off. Figures go down as entries."
+  );
 }
 
 function cellAt(row, col) {
