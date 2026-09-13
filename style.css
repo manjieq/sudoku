@@ -1,7 +1,7 @@
-/* Archivo, variable on both width and weight. Self-hosted: the width axis
-   IS this design's hierarchy, and a CDN that is unreachable offline would
-   collapse the expanded titling and the condensed data layer into one
-   identical system face. The page has to run from file:// forever. */
+/* Archivo, variable on both width and weight. Self-hosted: the page has to
+   run from file:// forever, and the theme this design borrows from leans on
+   a real UI sans that no Linux box ships. Archivo stands in for Segoe UI as
+   the sans register; Georgia carries the headings. */
 @font-face {
   font-family: "Archivo";
   font-style: normal;
@@ -26,60 +26,143 @@
 }
 
 /* =========================================================================
-   PLATE IX — a sudoku set as a printed laboratory reference chart.
-   Flat process ink on chart stock. The board is not a card on a page:
-   it is the sheet, and every control is apparatus printed onto it.
+   PLATE IX — sudoku wearing the Weighted Gradebook theme.
+
+   Warm paper page, white cards with a hairline rule and a soft shadow,
+   Georgia headings over a sans UI, monospace for anything countable, one
+   accent carrying interaction and a flag/good pair carrying state. The
+   gradebook's grey-and-green is repointed to indigo and amber.
    ========================================================================= */
 
 :root {
   color-scheme: light;
 
-  /* --- Substrate and ink ------------------------------------------------ */
-  --stock: #e4e9e1;
-  --stock-deep: #d5dcd2;
-  --stock-edge: #c3ccc0;
-  --ink: #14171a;
-  --ink-2: #4a5450;
-  --ink-3: #5f6a65;
+  /* --- Substrate -------------------------------------------------------- */
+  --paper: #f2eee6;
+  --surface: #ffffff;
+  --surface-alt: #faf6ee;
+  --rule: #dfd8c9;
+  --rule-strong: #b9b0a0;
+  --neutral-bg: #ede8dc;
 
-  /* --- Working inks ----------------------------------------------------- */
-  --entry: #17357f;        /* the hand: figures entered by the player      */
-  --conflict: #9e0f18;     /* reserved absolutely for repeats              */
-  --conflict-bright: #b4121c;
-  --gold: #e8b10c;         /* masthead accent and active apparatus         */
+  /* --- Ink -------------------------------------------------------------- */
+  --ink: #262532;
+  --ink-soft: #656072;
 
-  /* Reversed out of the ink band */
-  --band-2: color-mix(in srgb, var(--stock) 78%, var(--ink));
-  --band-3: color-mix(in srgb, var(--stock) 55%, var(--ink));
-  --paper: #ffffff;        /* print only: real paper, not chart stock       */
+  /* --- Accent and state ------------------------------------------------- */
+  --accent: #4a45b0;          /* indigo: the hand, and every live control   */
+  --accent-ink: #f5f4fc;
+  --accent-bg: #eceafa;
+  --highlight: #b07407;       /* amber: the box under the mark, pencil mode */
+  --highlight-bg: #f6ecd9;
+  --flag: #b23a2c;            /* reserved absolutely for repeats            */
+  --flag-bg: #f7e6e2;
+  --good: #147c8c;
+  --good-bg: #e1eff2;
 
-  /* --- Box families: four plate inks, rotated so no two boxes touch ----- */
-  --fam-1: #00794f;        /* viridian  */
-  --fam-2: #6a2ea0;        /* manganese */
-  --fam-3: #ab7f00;        /* chromate  */
-  --fam-4: #12617f;        /* cerulean  */
+  --shadow: 0 1px 2px rgba(38, 37, 50, 0.06), 0 8px 24px -12px rgba(38, 37, 50, 0.18);
+  --shadow-lift: 0 2px 4px rgba(38, 37, 50, 0.08), 0 18px 40px -18px rgba(38, 37, 50, 0.32);
 
-  --tint: 17%;
-  --tint-hot: 24%;
-  --tint-given: 28%;
-  --tint-chip: 30%;
+  /* --- Box families: four inks, rotated so no two boxes touch ----------- */
+  --fam-1: #3e44a8;           /* indigo    */
+  --fam-2: #8a3a86;           /* plum      */
+  --fam-3: #a06a00;           /* ochre     */
+  --fam-4: #147c8c;           /* cerulean  */
+
+  /* Flat washes only — the borrowed theme has no texture anywhere. */
+  --cell-base: var(--surface);
+  --tint: 8%;
+  --tint-hot: 13%;
+  --tint-given: 15%;
+  --tint-chip: 18%;
 
   /* --- Type ------------------------------------------------------------- */
-  --face: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --sans: "Archivo", "Segoe UI", -apple-system, Roboto, Helvetica, Arial, sans-serif;
+  --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  --mono: Consolas, "SFMono-Regular", Menlo, "DejaVu Sans Mono", monospace;
 
-  /* --- Rules ------------------------------------------------------------ */
-  --hair: 1px solid color-mix(in srgb, var(--ink) 26%, transparent);
-  --rule: 2px solid var(--ink);
-  --heavy: 3px solid var(--ink);
+  /* --- Geometry --------------------------------------------------------- */
+  --card-radius: 14px;
+  --control-radius: 8px;
 
-  /* --- Motion: ink arriving on paper ------------------------------------ */
-  --set: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --set: 150ms ease;
 }
 
-/* Width and weight are the whole hierarchy: expanded for titling,
-   condensed for the data layer. One family, two extreme registers. */
-.u-expanded { font-variation-settings: "wdth" 118, "wght" 800; }
-.u-narrow   { font-variation-settings: "wdth" 68,  "wght" 600; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --paper: #17161c;
+    --surface: #1f1e27;
+    --surface-alt: #26242f;
+    --rule: #35323f;
+    --rule-strong: #514c60;
+    --neutral-bg: #2a2833;
+
+    --ink: #ece8f2;
+    --ink-soft: #a09aae;
+
+    --accent: #9a93f0;
+    --accent-ink: #14122a;
+    --accent-bg: #2a2647;
+    --highlight: #e0ae5a;
+    --highlight-bg: #372c1b;
+    --flag: #e98a76;
+    --flag-bg: #3a2420;
+    --good: #6fc4d4;
+    --good-bg: #1c3036;
+
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px -12px rgba(0, 0, 0, 0.5);
+    --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.4), 0 18px 40px -18px rgba(0, 0, 0, 0.7);
+
+    --fam-1: #8a8fe8;
+    --fam-2: #d089cc;
+    --fam-3: #d9a63e;
+    --fam-4: #5fbacb;
+
+    --tint: 8%;
+    --tint-hot: 14%;
+    --tint-given: 15%;
+    --tint-chip: 22%;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --paper: #17161c;
+  --surface: #1f1e27;
+  --surface-alt: #26242f;
+  --rule: #35323f;
+  --rule-strong: #514c60;
+  --neutral-bg: #2a2833;
+
+  --ink: #ece8f2;
+  --ink-soft: #a09aae;
+
+  --accent: #9a93f0;
+  --accent-ink: #14122a;
+  --accent-bg: #2a2647;
+  --highlight: #e0ae5a;
+  --highlight-bg: #372c1b;
+  --flag: #e98a76;
+  --flag-bg: #3a2420;
+  --good: #6fc4d4;
+  --good-bg: #1c3036;
+
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px -12px rgba(0, 0, 0, 0.5);
+  --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.4), 0 18px 40px -18px rgba(0, 0, 0, 0.7);
+
+  --fam-1: #8a8fe8;
+  --fam-2: #d089cc;
+  --fam-3: #d9a63e;
+  --fam-4: #5fbacb;
+
+  --tint: 8%;
+  --tint-hot: 14%;
+  --tint-given: 15%;
+  --tint-chip: 22%;
+}
 
 * { box-sizing: border-box; }
 
@@ -89,229 +172,216 @@
 
 html {
   -webkit-text-size-adjust: 100%;
-  background: var(--stock-deep);
+  background: var(--paper);
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--stock-deep);
+  background: var(--paper);
   color: var(--ink);
-  font-family: var(--face);
-  font-synthesis-weight: none;
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
   font-variant-numeric: tabular-nums lining-nums;
 }
 
-::selection { background: var(--gold); color: var(--ink); }
+::selection { background: var(--accent-bg); color: var(--ink); }
 
 :focus-visible {
-  outline: 2px solid var(--ink);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
-* { scrollbar-color: var(--ink-3) var(--stock-deep); scrollbar-width: thin; }
+* { scrollbar-color: var(--rule-strong) var(--paper); scrollbar-width: thin; }
 ::-webkit-scrollbar { width: 11px; height: 11px; }
-::-webkit-scrollbar-track { background: var(--stock-deep); }
-::-webkit-scrollbar-thumb { background: var(--ink-3); border: 3px solid var(--stock-deep); }
-::-webkit-scrollbar-thumb:hover { background: var(--ink-2); }
+::-webkit-scrollbar-track { background: var(--paper); }
+::-webkit-scrollbar-thumb { background: var(--rule-strong); border: 3px solid var(--paper); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-soft); }
 
 .skip {
   position: absolute;
   left: -9999px;
   top: 0;
   z-index: 40;
-  background: var(--ink);
-  color: var(--stock);
+  background: var(--accent);
+  color: var(--accent-ink);
   padding: 0.7rem 1.1rem;
-  font-variation-settings: "wdth" 80, "wght" 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-size: 0.75rem;
+  border-radius: 0 0 var(--control-radius) 0;
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 .skip:focus { left: 0; }
 
 /* =========================================================================
-   THE SHEET
+   THE SHELL — a column of cards on paper
    ========================================================================= */
 
 .sheet {
   position: relative;
-  min-height: 100vh;
   max-width: 1120px;
   margin: 0 auto;
-  background: var(--stock);
-  border-left: 1px solid var(--stock-edge);
-  border-right: 1px solid var(--stock-edge);
+  padding: clamp(1.5rem, 3.4vw, 2.5rem) clamp(1rem, 2.4vw, 1.5rem) clamp(2.5rem, 5vw, 4rem);
   display: flex;
   flex-direction: column;
-}
-
-/* Paper tooth. The sheet is a printed object, not a flat digital fill. */
-.sheet::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 30;
-  pointer-events: none;
-  mix-blend-mode: multiply;
-  opacity: 0.16;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23t)'/%3E%3C/svg%3E");
+  gap: clamp(1.1rem, 2vw, 1.75rem);
 }
 
 /* =========================================================================
-   MASTHEAD — the black band. All state is typeset into the plate itself,
-   so there is no toolbar anywhere on this page.
+   MASTHEAD — title, the three readouts, and the series switch
    ========================================================================= */
 
 .masthead {
-  position: relative;
-  background: var(--ink);
-  color: var(--stock);
-  padding: clamp(0.8rem, 1.4vw, 1.1rem) clamp(1rem, 3vw, 2.5rem) 0;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  column-gap: clamp(1rem, 2.5vw, 3rem);
-  row-gap: 0;
-  align-items: end;
-}
-
-/* Plate misregistration: the gold ran a hair low on the press. */
-.masthead::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -3px;
-  height: 3px;
-  background: var(--gold);
-  transform: translateX(2px);
+  column-gap: clamp(1rem, 2.5vw, 2.5rem);
+  row-gap: clamp(0.9rem, 1.6vw, 1.25rem);
+  align-items: start;
 }
 
 .chart-title {
   margin: 0;
-  font-size: clamp(2.4rem, 6.4vw, 4.6rem);
-  line-height: 0.8;
-  font-variation-settings: "wdth" 125, "wght" 900;
-  letter-spacing: -0.035em;
-  text-transform: uppercase;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(1.7rem, 3.4vw, 2.3rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
 }
 
 .chart-standfirst {
-  margin: 0.6rem 0 0;
-  max-width: 54ch;
-  font-size: clamp(0.8rem, 1.05vw, 0.95rem);
-  line-height: 1.45;
-  font-variation-settings: "wdth" 88, "wght" 400;
-  color: var(--band-2);
+  margin: 0.5rem 0 0;
+  max-width: 58ch;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
 }
 
+/* The readouts: three tiles, values in the monospace register so the
+   elapsed clock never re-flows as the digits change. */
 .masthead-data {
   display: flex;
-  gap: clamp(1rem, 2vw, 2.25rem);
+  flex-wrap: wrap;
+  gap: 8px;
   margin: 0;
-  padding: 0 0 0.35rem;
+  padding: 0;
 }
 
-.datum { min-width: 0; }
+.datum {
+  min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 8px 14px 9px;
+  box-shadow: var(--shadow);
+}
 
 .datum dt {
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
+  font-size: 0.68rem;
   text-transform: uppercase;
-  font-variation-settings: "wdth" 72, "wght" 600;
-  color: var(--band-3);
-  margin-bottom: 0.28rem;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-bottom: 2px;
 }
 
 .datum dd {
   margin: 0;
-  font-size: clamp(1.15rem, 2vw, 1.65rem);
-  line-height: 1;
-  font-variation-settings: "wdth" 108, "wght" 700;
-  color: var(--stock);
+  font-family: var(--mono);
+  font-size: 1.12rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--ink);
 }
 
-.datum--wide dd { color: var(--gold); }
+.datum--wide dd { color: var(--accent); }
 
-/* --- Series tab strip ---------------------------------------------------- */
+/* --- Series switch ------------------------------------------------------- */
 
 .tab-strip {
   grid-column: 1 / -1;
   display: flex;
-  align-items: flex-end;
-  gap: 0.9rem;
-  margin-top: clamp(0.7rem, 1.2vw, 0.9rem);
+  align-items: center;
+  gap: 0.75rem;
   flex-wrap: wrap;
 }
 
 .tab-strip-label {
   font-size: 0.7rem;
-  letter-spacing: 0.18em;
   text-transform: uppercase;
-  font-variation-settings: "wdth" 72, "wght" 600;
-  color: var(--band-3);
-  padding-bottom: 0.7rem;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  color: var(--ink-soft);
 }
 
-.tab-strip-tabs { display: flex; gap: 3px; }
+.tab-strip-tabs {
+  display: flex;
+  gap: 6px;
+  background: var(--surface-alt);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 4px;
+}
 
 .tab {
   appearance: none;
-  border: 0;
-  background: color-mix(in srgb, var(--stock) 16%, var(--ink));
-  color: color-mix(in srgb, var(--stock) 72%, var(--ink));
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--ink-soft);
   font-family: inherit;
-  font-size: 0.82rem;
-  font-variation-settings: "wdth" 92, "wght" 700;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  padding: 0.5rem 1.05rem 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: var(--control-radius);
+  padding: 6px 14px 7px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: 0.18rem;
-  transition: background var(--set), color var(--set);
+  align-items: flex-start;
+  gap: 1px;
+  transition: background var(--set), color var(--set), border-color var(--set);
 }
 
 .tab-sub {
+  font-family: var(--mono);
   font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  font-variation-settings: "wdth" 70, "wght" 500;
-  opacity: 0.9;
+  font-weight: 500;
+  opacity: 0.85;
 }
 
-.tab:not([aria-pressed="true"]):hover { background: color-mix(in srgb, var(--stock) 26%, var(--ink)); color: var(--stock); }
+.tab:not([aria-pressed="true"]):hover {
+  background: var(--surface);
+  border-color: var(--rule);
+  color: var(--ink);
+}
 
 .tab[aria-pressed="true"] {
-  background: var(--stock);
-  color: var(--ink);
-  padding-bottom: 0.95rem;
-  margin-bottom: -0.2rem;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: var(--shadow);
 }
 
-.tab[aria-pressed="true"] .tab-sub { opacity: 1; color: var(--ink-2); }
+.tab[aria-pressed="true"] .tab-sub { opacity: 1; }
 
 /* =========================================================================
-   PLATE BODY
+   BODY — the plate card and the key column
    ========================================================================= */
 
 .plate-body {
-  flex: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(228px, 17.5rem);
-  gap: clamp(1.25rem, 2.6vw, 2.5rem);
-  padding: clamp(1rem, 1.8vw, 1.5rem) clamp(1rem, 3vw, 2.5rem);
+  grid-template-columns: minmax(0, 1fr) minmax(244px, 19rem);
+  gap: clamp(1rem, 2vw, 1.75rem);
   align-items: start;
   align-content: start;
 }
 
-/* --- Index rails + plate share one grid so the tabs align exactly -------- */
-
+/* Index rails and plate share one grid so the ticks align to the columns. */
 .plate-wrap {
   display: grid;
-  grid-template-columns: clamp(1.3rem, 2.4vw, 2.1rem) minmax(0, 1fr);
-  grid-template-rows: clamp(1.3rem, 2.4vw, 2.1rem) auto;
-  max-width: max(17rem, min(100%, calc(100vh - 19.5rem)));
+  grid-template-columns: clamp(1.3rem, 2.4vw, 1.9rem) minmax(0, 1fr);
+  grid-template-rows: clamp(1.3rem, 2.4vw, 1.9rem) auto;
+  max-width: max(17rem, min(100%, calc(100vh - 21rem)));
   margin-inline: 0;
   width: 100%;
 }
@@ -322,52 +392,45 @@ body {
   grid-column: 2;
   grid-row: 1;
   grid-template-columns: repeat(9, 1fr);
+  padding-bottom: 4px;
 }
 
 .index--row {
   grid-column: 1;
   grid-row: 2;
   grid-template-rows: repeat(9, 1fr);
+  padding-right: 4px;
 }
 
 .tick {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(0.7rem, 1.1vw, 0.78rem);
-  letter-spacing: 0.1em;
-  font-variation-settings: "wdth" 76, "wght" 700;
-  color: var(--ink-3);
+  border-radius: 5px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
   transition: background var(--set), color var(--set);
 }
 
-.index--col .tick { align-items: flex-end; padding-bottom: 0.3rem; }
-.index--row .tick { justify-content: flex-end; padding-right: 0.42rem; }
-
-/* The signature: focusing a cell drives full-strength ink into exactly
-   its two index tabs. Peer highlighting as chart apparatus. */
+/* Focusing a cell drives the accent into exactly its two index tabs. */
 .tick.is-live {
-  background: var(--ink);
-  color: var(--gold);
+  background: var(--accent);
+  color: var(--accent-ink);
 }
 
 .plate-frame {
   grid-column: 2;
   grid-row: 2;
   position: relative;
-  border: var(--heavy);
-  background: var(--stock);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow);
   aspect-ratio: 1;
-}
-
-/* The second misregistration — the viridian plate seated 3px off. */
-.plate-frame::before {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  border: 3px solid var(--fam-1);
-  transform: translate(3px, 3px);
-  z-index: -1;
+  overflow: hidden;
 }
 
 .plate {
@@ -380,19 +443,15 @@ body {
 
 /* --- The cell ------------------------------------------------------------ */
 
-/* Every cell inherits its box's plate ink through one custom property, so
-   the whole ladder is derived rather than enumerated. Density is carried by
-   a real halftone screen over a light flat tint — flat ink for givenness,
-   screen frequency for the box under the mark, so the two states never
-   compete on the same axis. */
+/* Every cell inherits its box's ink through one custom property, so the
+   whole ladder is derived rather than enumerated. The borrowed theme is
+   flat, so density is carried entirely by wash strength: light for an
+   ordinary cell, one step up for a given, one more for hover. */
 .cell {
   --cell-ink: var(--fam);
-  --cell-tint: color-mix(in srgb, var(--fam) var(--tint), var(--stock));
-  --cell-tint-hot: color-mix(in srgb, var(--fam) var(--tint-hot), var(--stock));
-  --cell-tint-given: color-mix(in srgb, var(--fam) var(--tint-given), var(--stock));
-  --cell-dot: color-mix(in srgb, var(--fam) 60%, transparent);
-  --screen: 3px;
-  --dot: 0.5px;
+  --cell-tint: color-mix(in srgb, var(--fam) var(--tint), var(--cell-base));
+  --cell-tint-hot: color-mix(in srgb, var(--fam) var(--tint-hot), var(--cell-base));
+  --cell-tint-given: color-mix(in srgb, var(--fam) var(--tint-given), var(--cell-base));
 }
 
 .cell {
@@ -401,43 +460,39 @@ body {
   margin: 0;
   padding: 0;
   font-family: inherit;
-  border: var(--hair);
+  border: 1px solid var(--rule);
   border-width: 0 1px 1px 0;
+  border-radius: 0;
   cursor: pointer;
   display: grid;
   place-items: center;
   background-color: var(--cell-tint);
-  /* A two-pass offset halftone, under the figure and never over it. */
-  background-image:
-    radial-gradient(var(--cell-dot) var(--dot), transparent calc(var(--dot) + 0.1px)),
-    radial-gradient(var(--cell-dot) var(--dot), transparent calc(var(--dot) + 0.1px));
-  background-size: var(--screen) var(--screen), var(--screen) var(--screen);
-  background-position: 0 0, calc(var(--screen) / 2) calc(var(--screen) / 2);
-  color: var(--entry);
-  font-size: clamp(1.15rem, 4.4vmin, 2.5rem);
-  font-variation-settings: "wdth" 100, "wght" 600;
+  color: var(--accent);
+  font-size: clamp(1.15rem, 4.4vmin, 2.4rem);
+  font-weight: 600;
   line-height: 1;
-  transition: background-color var(--set);
+  transition: background-color var(--set), box-shadow var(--set);
 }
 
 /* Box boundaries carry the structure in rule weight, so the colour
    families never have to do that work alone. */
-.cell[data-col="2"], .cell[data-col="5"] { border-right: var(--rule); }
-.cell[data-row="2"], .cell[data-row="5"] { border-bottom: var(--rule); }
+.cell[data-col="2"], .cell[data-col="5"] { border-right: 2px solid var(--rule-strong); }
+.cell[data-row="2"], .cell[data-row="5"] { border-bottom: 2px solid var(--rule-strong); }
 .cell[data-col="8"] { border-right: 0; }
 .cell[data-row="8"] { border-bottom: 0; }
 
 .cell:hover:not(.marked) { background-color: var(--cell-tint-hot); }
 
-/* The unfilled cell is never blank: it still shows its own ruling. */
+/* The unfilled cell is never blank: it still shows its own coordinate. */
 .coord {
   position: absolute;
   top: 3px;
   left: 4px;
-  font-size: clamp(0.48rem, 1.05vmin, 0.58rem);
-  letter-spacing: 0.06em;
-  font-variation-settings: "wdth" 70, "wght" 600;
-  color: color-mix(in srgb, var(--cell-ink) 45%, var(--ink));
+  font-family: var(--mono);
+  font-size: clamp(0.46rem, 1.05vmin, 0.56rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: color-mix(in srgb, var(--cell-ink) 42%, var(--ink-soft));
   pointer-events: none;
 }
 
@@ -449,51 +504,51 @@ body {
 
 .cell.is-set .figure { animation: ink 170ms cubic-bezier(0.16, 1, 0.3, 1); }
 
-/* Ink arriving on paper: it lands a touch large and wet, then bites. */
 @keyframes ink {
-  from { opacity: 0.15; transform: scale(1.3); filter: blur(3px); }
-  to   { opacity: 1;    transform: scale(1);   filter: blur(0); }
+  from { opacity: 0; transform: translateY(-3px) scale(0.9); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Set at press: machine-set, black, expanded, heavier than any hand. */
+/* Set at press: machine-set, in the key colour and heavier than any hand. */
 .cell.given {
   color: var(--ink);
-  font-variation-settings: "wdth" 112, "wght" 800;
+  font-weight: 700;
   background-color: var(--cell-tint-given);
   cursor: default;
 }
 
 .cell.given .coord { display: none; }
 
-/* Repeats. Carried by colour AND by a printed proofreader's rule, so the
+/* Repeats. Carried by colour AND by a printed rule under the figure, so the
    state never depends on hue alone. */
-.cell.conflict { color: var(--conflict); }
+.cell.conflict { color: var(--flag); }
 
 .cell.conflict .figure::after {
   content: "";
   position: absolute;
-  left: -6%;
-  right: -6%;
-  bottom: -0.14em;
-  height: 0.09em;
-  background: var(--conflict);
-  box-shadow: 0 0.11em 0 var(--conflict);
+  left: -8%;
+  right: -8%;
+  bottom: -0.16em;
+  height: 0.08em;
+  border-radius: 999px;
+  background: var(--flag);
 }
 
 .cell.marked {
-  background-color: var(--stock);
-  background-image: none;
-  box-shadow: inset 0 0 0 3px var(--ink);
+  background-color: var(--surface);
+  box-shadow: inset 0 0 0 2px var(--accent);
   z-index: 2;
 }
 
-.cell.marked .coord { color: var(--ink-2); }
+.cell.marked .coord { color: var(--accent); }
 
 .cell:focus-visible { outline: 0; }
-.cell:focus-visible.marked { box-shadow: inset 0 0 0 3px var(--ink), inset 0 0 0 6px var(--gold); }
+.cell:focus-visible.marked {
+  box-shadow: inset 0 0 0 2px var(--accent), inset 0 0 0 5px var(--accent-bg);
+}
 
-/* The rank and the file are ruled, the way a reference chart leads your eye
-   to an entry. Ink and line, never a wash of colour over the plate. */
+/* The rank and the file are ruled the way the gradebook rules a row: a
+   tinted band, not a heavy black lead. */
 .sightline {
   position: absolute;
   pointer-events: none;
@@ -505,8 +560,8 @@ body {
   right: 0;
   height: calc(100% / 9);
   top: calc(var(--mark-row, 0) * 100% / 9);
-  border-top: 2px solid var(--ink);
-  border-bottom: 2px solid var(--ink);
+  border-top: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
 }
 
 .sightline--file {
@@ -514,8 +569,8 @@ body {
   bottom: 0;
   width: calc(100% / 9);
   left: calc(var(--mark-col, 0) * 100% / 9);
-  border-left: 2px solid var(--ink);
-  border-right: 2px solid var(--ink);
+  border-left: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  border-right: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
 }
 
 .sightline--box {
@@ -524,10 +579,11 @@ body {
   left: calc(var(--mark-box-col, 0) * 100% / 3);
   width: calc(100% / 3);
   height: calc(100% / 3);
-  border: 3px solid var(--gold);
+  border: 2px solid var(--highlight);
+  border-radius: 4px;
 }
 
-/* --- Pencilled candidates: set like isotope data on an element tile ----- */
+/* --- Pencilled candidates ------------------------------------------------ */
 
 .pencil {
   position: absolute;
@@ -535,9 +591,10 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  font-size: clamp(0.48rem, 1.4vmin, 0.7rem);
-  font-variation-settings: "wdth" 74, "wght" 700;
-  color: color-mix(in srgb, var(--cell-ink) 42%, var(--ink));
+  font-family: var(--mono);
+  font-size: clamp(0.46rem, 1.4vmin, 0.68rem);
+  font-weight: 600;
+  color: color-mix(in srgb, var(--cell-ink) 40%, var(--ink-soft));
   pointer-events: none;
 }
 
@@ -553,32 +610,35 @@ body {
   display: grid;
   align-content: center;
   justify-items: center;
-  gap: 0.9rem;
-  background: color-mix(in srgb, var(--stock) 92%, transparent);
+  gap: 0.85rem;
+  background: color-mix(in srgb, var(--surface) 93%, transparent);
   padding: 2rem;
   text-align: center;
 }
 
 .press-line {
   margin: 0;
-  font-size: clamp(1.1rem, 3vw, 1.9rem);
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-variation-settings: "wdth" 108, "wght" 800;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(1.05rem, 2.6vw, 1.5rem);
+  letter-spacing: -0.01em;
 }
 
+/* The same meter the gradebook uses for allocated weight. */
 .press-bar {
-  width: min(20rem, 60%);
-  height: 10px;
-  border: var(--rule);
-  padding: 2px;
+  width: min(20rem, 70%);
+  height: 8px;
+  border-radius: 999px;
+  background: var(--neutral-bg);
+  overflow: hidden;
 }
 
 .press-bar span {
   display: block;
   height: 100%;
   width: 100%;
-  background: var(--ink);
+  border-radius: 999px;
+  background: var(--accent);
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 120ms linear;
@@ -586,14 +646,12 @@ body {
 
 .press-pct {
   margin: 0;
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-variation-settings: "wdth" 72, "wght" 600;
-  color: var(--ink-2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--ink-soft);
 }
 
-/* --- The overprint ------------------------------------------------------ */
+/* --- The finish ---------------------------------------------------------- */
 
 .stamp {
   position: absolute;
@@ -601,73 +659,83 @@ body {
   z-index: 6;
   display: grid;
   place-content: center;
-  gap: 0.45rem;
+  justify-items: center;
+  gap: 0.55rem;
   pointer-events: none;
-  color: var(--conflict-bright);
-  transform: rotate(-6.5deg);
-  animation: strike 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 1.5rem;
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
+  animation: strike 320ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .stamp-word {
-  mix-blend-mode: multiply;
-  border: 6px double currentColor;
-  padding: 0.25em 0.5em 0.3em;
-  font-size: clamp(2.2rem, 11vmin, 5.5rem);
-  line-height: 0.9;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-variation-settings: "wdth" 118, "wght" 900;
+  background: var(--surface);
+  border: 1px solid var(--good);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-lift);
+  color: var(--good);
+  padding: 0.3em 0.7em 0.34em;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 8vmin, 3.4rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
   text-align: center;
 }
 
+/* The gradebook's grade pill, at the size a verdict deserves. */
 .stamp-meta {
-  justify-self: center;
-  background: var(--conflict-bright);
-  color: var(--stock);
-  padding: 0.4em 0.9em 0.45em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--good-bg);
+  color: var(--good);
+  border-radius: 999px;
+  padding: 0.4em 1.1em 0.45em;
   text-align: center;
-  font-size: clamp(0.66rem, 1.9vmin, 0.92rem);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-variation-settings: "wdth" 76, "wght" 700;
+  font-family: var(--mono);
+  font-weight: 600;
+  font-size: clamp(0.7rem, 1.9vmin, 0.85rem);
+  letter-spacing: 0.04em;
 }
 
 @keyframes strike {
-  from { opacity: 0.1; transform: rotate(-13deg) scale(1.9); filter: blur(6px); }
-  to   { opacity: 1;   transform: rotate(-6.5deg) scale(1);  filter: blur(0); }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 /* =========================================================================
-   KEY COLUMN — census, state key, operations
+   KEY COLUMN — census, state key, operations. Each block is a card.
    ========================================================================= */
 
 .key-column {
   display: grid;
-  gap: clamp(0.75rem, 1.2vw, 0.9rem);
+  gap: clamp(0.75rem, 1.4vw, 1rem);
   align-content: start;
   min-width: 0;
 }
 
 .key-block {
-  border-top: var(--rule);
-  padding-top: 0.45rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow);
+  padding: 16px 18px 18px;
 }
 
 .key-h {
-  margin: 0 0 0.4rem;
-  font-size: 0.74rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  font-variation-settings: "wdth" 74, "wght" 700;
+  margin: 0 0 2px;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.08rem;
+  letter-spacing: -0.01em;
 }
 
 .key-note {
-  margin: 0 0 0.55rem;
-  font-size: 0.8rem;
-  line-height: 1.35;
-  font-variation-settings: "wdth" 86, "wght" 400;
-  color: var(--ink-2);
-  max-width: 34ch;
+  margin: 0 0 0.75rem;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  max-width: 36ch;
 }
 
 /* --- Digit census -------------------------------------------------------- */
@@ -675,92 +743,94 @@ body {
 .census {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 3px;
+  gap: 6px;
 }
 
 .tally {
   appearance: none;
-  border: var(--hair);
-  background: var(--stock);
+  border: 1px solid var(--rule);
+  border-radius: var(--control-radius);
+  background: var(--surface-alt);
   font-family: inherit;
-  color: var(--entry);
+  color: var(--accent);
   cursor: pointer;
-  padding: 0.28rem 0.3rem 0.22rem;
+  padding: 7px 4px 6px;
   display: grid;
   justify-items: center;
-  gap: 0.15rem;
+  gap: 1px;
   transition: background var(--set), color var(--set), border-color var(--set);
 }
 
 .tally-fig {
-  font-size: clamp(1.05rem, 2vw, 1.35rem);
-  line-height: 1;
-  font-variation-settings: "wdth" 108, "wght" 700;
+  font-family: var(--mono);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.1;
 }
 
 .tally-left {
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  font-variation-settings: "wdth" 70, "wght" 600;
-  color: var(--ink-3);
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--ink-soft);
 }
 
-.tally:hover { background: var(--ink); color: var(--gold); border-color: var(--ink); }
-.tally:hover .tally-left { color: color-mix(in srgb, var(--gold) 70%, var(--ink)); }
+.tally:hover { background: var(--accent-bg); border-color: var(--accent); }
 
 .tally.spent {
-  color: var(--ink-3);
-  background: color-mix(in srgb, var(--ink) 7%, var(--stock));
+  color: var(--ink-soft);
+  background: var(--neutral-bg);
+  border-color: transparent;
   cursor: default;
 }
-.tally.spent .tally-fig { font-variation-settings: "wdth" 108, "wght" 400; }
+.tally.spent .tally-fig { font-weight: 500; }
 
 /* --- State key ----------------------------------------------------------- */
 
-.legend { list-style: none; margin: 0 0 0.6rem; padding: 0; display: grid; gap: 0.22rem; }
+.legend { list-style: none; margin: 0 0 0.75rem; padding: 0; display: grid; gap: 0.3rem; }
 
-.legend-row { display: flex; align-items: center; gap: 0.6rem; }
+.legend-row { display: flex; align-items: center; gap: 0.65rem; }
 
 .swatch {
   flex: none;
   width: 1.7rem;
   height: 1.7rem;
-  border: var(--hair);
+  border: 1px solid var(--rule);
+  border-radius: 7px;
   display: grid;
   place-items: center;
   font-size: 0.95rem;
+  font-weight: 600;
   line-height: 1;
-  background-image:
-    radial-gradient(color-mix(in srgb, var(--fam-4) 60%, transparent) 0.5px, transparent 0.6px),
-    radial-gradient(color-mix(in srgb, var(--fam-4) 60%, transparent) 0.5px, transparent 0.6px);
-  background-size: 3px 3px, 3px 3px;
-  background-position: 0 0, 1.5px 1.5px;
-  background-color: color-mix(in srgb, var(--fam-4) var(--tint), var(--stock));
+  background-color: color-mix(in srgb, var(--fam-4) var(--tint), var(--cell-base));
 }
 
 .swatch--given {
   color: var(--ink);
-  font-variation-settings: "wdth" 112, "wght" 800;
-  background-color: color-mix(in srgb, var(--fam-4) var(--tint-given), var(--stock));
+  font-weight: 700;
+  background-color: color-mix(in srgb, var(--fam-4) var(--tint-given), var(--cell-base));
 }
-.swatch--entered { color: var(--entry); font-variation-settings: "wdth" 100, "wght" 600; }
-.swatch--conflict { color: var(--conflict); font-variation-settings: "wdth" 100, "wght" 600; border-bottom: 2px solid var(--conflict); }
+.swatch--entered { color: var(--accent); }
+.swatch--conflict {
+  color: var(--flag);
+  background-color: var(--flag-bg);
+  border-color: color-mix(in srgb, var(--flag) 40%, transparent);
+}
 
 .swatch--pencil {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-content: center;
+  font-family: var(--mono);
   font-size: 0.5rem;
-  font-variation-settings: "wdth" 74, "wght" 700;
-  color: color-mix(in srgb, var(--fam-4) 45%, var(--ink));
+  font-weight: 600;
+  color: color-mix(in srgb, var(--fam-4) 45%, var(--ink-soft));
 }
 .swatch--pencil b { font-weight: inherit; }
 
 .legend-t {
-  font-size: 0.8rem;
-  line-height: 1.35;
-  font-variation-settings: "wdth" 86, "wght" 400;
-  color: var(--ink-2);
+  font-size: 0.84rem;
+  line-height: 1.4;
+  color: var(--ink-soft);
 }
 
 /* --- Family key: the box inks, and which one is live -------------------- */
@@ -771,163 +841,169 @@ body {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(9, 1fr);
-  gap: 2px;
+  gap: 3px;
 }
 
 .family-chip {
   height: 1.5rem;
-  border: var(--hair);
-  background-color: color-mix(in srgb, var(--fam) var(--tint-chip), var(--stock));
-  background-image:
-    radial-gradient(color-mix(in srgb, var(--fam) 60%, transparent) 0.5px, transparent 0.6px),
-    radial-gradient(color-mix(in srgb, var(--fam) 60%, transparent) 0.5px, transparent 0.6px);
-  background-size: 3px 3px, 3px 3px;
-  background-position: 0 0, 1.5px 1.5px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background-color: color-mix(in srgb, var(--fam) var(--tint-chip), var(--cell-base));
   display: grid;
   place-items: center;
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
-  font-variation-settings: "wdth" 70, "wght" 700;
-  color: color-mix(in srgb, var(--fam) 40%, var(--ink));
-  transition: background-color var(--set), color var(--set);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--fam) 55%, var(--ink));
+  transition: background-color var(--set), color var(--set), border-color var(--set);
 }
 
 .family-chip.is-live {
-  background-image: none;
   background-color: var(--fam);
-  color: var(--stock);
+  color: var(--surface);
   border-color: var(--fam);
 }
 
-/* --- Operations ---------------------------------------------------------- */
+/* --- Operations: the gradebook's button set ------------------------------ */
 
 .op {
   appearance: none;
   width: 100%;
-  border: 0;
-  border-top: var(--hair);
-  background: var(--stock);
+  border: 1px solid var(--rule);
+  border-radius: var(--control-radius);
+  background: var(--surface-alt);
   font-family: inherit;
   color: var(--ink);
   text-align: left;
-  padding: 0.3rem 0.55rem;
+  padding: 9px 13px;
+  margin-top: 6px;
   cursor: pointer;
-  font-size: 0.82rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-variation-settings: "wdth" 84, "wght" 700;
+  font-size: 0.85rem;
+  font-weight: 500;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  transition: background var(--set), color var(--set);
+  transition: background var(--set), color var(--set), border-color var(--set);
 }
 
-.op:first-of-type { border-top: 0; }
+.op:first-of-type { margin-top: 0; }
 
-.op:hover { background: var(--ink); color: var(--stock); }
+.op:hover { border-color: var(--accent); color: var(--accent); }
 
-.op:disabled { color: var(--ink-3); cursor: default; }
-.op:disabled:hover { background: var(--stock); color: var(--ink-3); }
+.op:disabled { color: var(--ink-soft); background: var(--neutral-bg); border-color: transparent; cursor: default; }
+.op:disabled:hover { color: var(--ink-soft); border-color: transparent; }
 
 .op kbd {
-  font-family: inherit;
+  font-family: var(--mono);
   font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  font-variation-settings: "wdth" 70, "wght" 600;
-  color: var(--ink-3);
-  background: var(--stock);
-  border: var(--hair);
-  padding: 0.15rem 0.35rem;
+  color: var(--ink-soft);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  padding: 2px 6px;
 }
-.op:hover kbd { background: var(--ink); color: var(--stock); border-color: color-mix(in srgb, var(--stock) 45%, transparent); }
-.op:disabled:hover kbd { background: var(--stock); color: var(--ink-3); border-color: color-mix(in srgb, var(--ink) 26%, transparent); }
+.op:disabled kbd { background: transparent; }
 
 .op--primary {
-  background: var(--ink);
-  color: var(--stock);
-  margin-top: 0.35rem;
-  padding-inline: 0.7rem;
-  border-top: 0;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+  margin-top: 10px;
 }
-.op--primary:hover { background: var(--entry); color: var(--stock); }
+.op--primary:hover { filter: brightness(1.08); color: var(--accent-ink); border-color: var(--accent); }
+
+.op--switch { gap: 0.5rem; }
+.op--switch .op-name { margin-right: auto; }
 
 .op--switch .op-state {
   font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  border: var(--hair);
-  padding: 0.15rem 0.45rem;
-  color: var(--ink-3);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 2px 9px;
+  color: var(--ink-soft);
+  background: var(--surface);
 }
 
-.op--switch[aria-pressed="true"] { background: var(--gold); }
-.op--switch[aria-pressed="true"]:hover { background: var(--gold); color: var(--ink); }
-.op--switch[aria-pressed="true"] .op-state { background: var(--ink); color: var(--gold); border-color: var(--ink); }
+/* Pencil mode is the one place amber acts as a control colour, matching
+   the amber box outline it switches you into drawing. */
+.op--switch[aria-pressed="true"] {
+  background: var(--highlight-bg);
+  border-color: var(--highlight);
+  color: var(--highlight);
+}
+.op--switch[aria-pressed="true"]:hover { color: var(--highlight); border-color: var(--highlight); }
+.op--switch[aria-pressed="true"] kbd { color: var(--highlight); border-color: color-mix(in srgb, var(--highlight) 45%, transparent); }
+.op--switch[aria-pressed="true"] .op-state {
+  background: var(--highlight);
+  color: var(--surface);
+  border-color: var(--highlight);
+}
 
 /* =========================================================================
-   NOTES BAND — the foot of the sheet
+   NOTES BAND — the running status line, as its own card
    ========================================================================= */
 
 .notes-band {
-  border-top: var(--heavy);
-  padding: 0.6rem clamp(1rem, 3vw, 2.5rem) clamp(0.9rem, 1.6vw, 1.2rem);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow);
+  padding: 14px 18px;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: clamp(0.8rem, 2vw, 2rem);
+  gap: clamp(0.8rem, 2vw, 1.5rem);
   align-items: baseline;
 }
 
 .notes-label {
   margin: 0;
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
+  font-size: 0.68rem;
   text-transform: uppercase;
-  font-variation-settings: "wdth" 72, "wght" 700;
-  color: var(--ink-3);
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  color: var(--ink-soft);
 }
 
 .notes-line {
   margin: 0;
-  font-size: clamp(0.82rem, 1.15vw, 0.95rem);
-  line-height: 1.4;
-  font-variation-settings: "wdth" 92, "wght" 500;
-  max-width: 72ch;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  max-width: 76ch;
 }
 
-.notes-line.is-fault { color: var(--conflict); font-variation-settings: "wdth" 92, "wght" 700; }
-.notes-line.is-clear { color: var(--fam-1); font-variation-settings: "wdth" 92, "wght" 700; }
+.notes-line.is-fault { color: var(--flag); font-weight: 600; }
+.notes-line.is-clear { color: var(--good); font-weight: 600; }
 
 .notes-meta {
   margin: 0;
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-variation-settings: "wdth" 72, "wght" 600;
-  color: var(--ink-3);
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: var(--ink-soft);
   white-space: nowrap;
 }
 
 /* =========================================================================
-   THE TRIM — evidence of the press that made the sheet
+   THE TRIM — the ink key, kept as a quiet footnote
    ========================================================================= */
 
 .trim {
-  border-top: var(--hair);
-  padding: 0.55rem clamp(1rem, 3vw, 2.5rem) clamp(1rem, 2vw, 1.4rem);
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem clamp(1rem, 3vw, 2.5rem);
+  gap: 0.5rem clamp(1rem, 3vw, 2rem);
   align-items: center;
   justify-content: space-between;
+  padding: 0 4px;
 }
 
 .trim-caption {
   margin: 0;
-  font-size: 0.7rem;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  font-variation-settings: "wdth" 70, "wght" 600;
-  color: var(--ink-3);
+  font-size: 0.74rem;
+  color: var(--ink-soft);
 }
 
 .ink-bar {
@@ -936,64 +1012,45 @@ body {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 3px;
+  gap: 6px;
 }
 
-/* Each swatch is a solid impression of one plate, labelled beneath in the
-   colour it prints — the bar a pressman reads to check ink density. */
+/* Each entry is a dot of one ink with its name beside it — the same pill
+   shape the rest of the page uses for a labelled value. */
 .ink-chip {
-  min-width: 2.6rem;
-  padding: 0.8rem 0.45rem 0;
-  border-top: 0.8rem solid var(--chip);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 3px 10px 3px 7px;
   font-size: 0.7rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  font-variation-settings: "wdth" 66, "wght" 600;
-  color: var(--ink-3);
-  text-align: center;
+  color: var(--ink-soft);
   white-space: nowrap;
 }
 
-.reg {
-  position: absolute;
-  inset: clamp(0.35rem, 0.9vw, 0.7rem);
-  pointer-events: none;
-  z-index: 2;
-}
-
-.reg i {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  opacity: 0.5;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Cg fill='none' stroke='%2314171a' stroke-width='1'%3E%3Ccircle cx='9' cy='9' r='4.5'/%3E%3Cpath d='M9 0v5M9 13v5M0 9h5M13 9h5'/%3E%3C/g%3E%3C/svg%3E") no-repeat center / contain;
-}
-
-.reg i:nth-child(1) { top: 0; left: 0; }
-.reg i:nth-child(2) { top: 0; right: 0; }
-.reg i:nth-child(3) { bottom: 0; left: 0; }
-.reg i:nth-child(4) { bottom: 0; right: 0; }
-
-/* The top two crosses fall on the black masthead, so they print in stock. */
-.reg i:nth-child(1),
-.reg i:nth-child(2) {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Cg fill='none' stroke='%23e4e9e1' stroke-width='1'%3E%3Ccircle cx='9' cy='9' r='4.5'/%3E%3Cpath d='M9 0v5M9 13v5M0 9h5M13 9h5'/%3E%3C/g%3E%3C/svg%3E");
+.ink-chip::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--chip);
+  flex: none;
 }
 
 /* =========================================================================
-   ADAPTATION — the sheet folds, the apparatus stays printed on it
+   ADAPTATION
    ========================================================================= */
 
 @media (max-width: 860px) {
   /* The coordinate would clamp to ~6.7px here. An unreadable coordinate is
-     worse than none; the cell's own ruling still carries the empty state. */
+     worse than none; the cell's own wash still carries the empty state. */
   .coord { display: none; }
 }
 
 @media (max-width: 960px) {
-  .plate-body {
-    grid-template-columns: minmax(0, 1fr);
-  }
+  .plate-body { grid-template-columns: minmax(0, 1fr); }
 
   .plate-wrap { max-width: 100%; margin-inline: auto; }
 
@@ -1005,19 +1062,11 @@ body {
   .key-block:first-child { grid-column: 1 / -1; }
 
   .census { grid-template-columns: repeat(9, 1fr); }
-  .tally { padding: 0.55rem 0.2rem 0.4rem; min-height: 3rem; align-content: center; }
+  .tally { padding: 9px 2px 7px; min-height: 3rem; align-content: center; }
 }
 
 @media (max-width: 640px) {
-  .masthead {
-    grid-template-columns: minmax(0, 1fr);
-    align-items: start;
-  }
-
-  .masthead-data {
-    padding-top: 0.5rem;
-    gap: 1.5rem;
-  }
+  .masthead { grid-template-columns: minmax(0, 1fr); }
 
   .chart-standfirst { max-width: none; }
 
@@ -1030,23 +1079,19 @@ body {
     gap: 0.45rem;
   }
 
-  .trim { justify-content: flex-start; gap: 0.7rem 1.25rem; }
+  .trim { justify-content: flex-start; gap: 0.6rem 1rem; }
   .trim-caption { order: 2; }
-  /* The bar keeps its patches and drops its labels: six ink names will not
-     sit on one line at this width, and a wrapped colour bar is not one. */
-  .ink-bar { flex: 1; }
-  .ink-chip { flex: 1; min-width: 0; padding: 0.8rem 0 0; }
-  .ink-chip span { display: none; }
-  .tab-strip { flex-wrap: nowrap; gap: 0.65rem; }
-  .tab-strip-label { padding-bottom: 0.85rem; }
+
+  .tab-strip { flex-wrap: nowrap; gap: 0.6rem; }
   .tab-strip-tabs { flex: 1; min-width: 0; }
   .tab { flex: 1; min-width: 0; align-items: center; text-align: center; }
 }
 
 @media (hover: none) {
-  .cell:hover { background-color: var(--cell-tint); }
-  .op:hover { background: var(--stock); color: var(--ink); }
-  .op--primary:hover { background: var(--ink); color: var(--stock); }
+  .cell:hover:not(.marked) { background-color: var(--cell-tint); }
+  .op:hover { border-color: var(--rule); color: var(--ink); }
+  .op--primary:hover { filter: none; color: var(--accent-ink); }
+  .tally:hover { background: var(--surface-alt); border-color: var(--rule); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1057,6 +1102,7 @@ body {
 }
 
 @media print {
-  .sheet::after, .key-column, .tab-strip { display: none; }
-  body { background: var(--paper); }
+  body { background: #fff; }
+  .key-column, .tab-strip, .skip { display: none; }
+  .plate-frame, .key-block, .notes-band, .datum { box-shadow: none; }
 }

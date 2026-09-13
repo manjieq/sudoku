@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="color-scheme" content="light" />
+<meta name="color-scheme" content="light dark" />
 <meta name="description" content="Plate IX — a browser-generated sudoku reference plate. Every puzzle is built at play time and proven to have exactly one solution." />
 <title>Plate IX — Sudoku</title>
 <link rel="preload" href="fonts/archivo-latin-var.woff2" as="font" type="font/woff2" crossorigin />
@@ -98,6 +98,7 @@
           <h2 class="key-h" id="ops-h">Operations</h2>
           <button type="button" class="op op--switch" id="notes-toggle" aria-pressed="false">
             <span class="op-name">Pencil</span>
+            <kbd>P</kbd>
             <span class="op-state" aria-hidden="true">Off</span>
           </button>
           <button type="button" class="op" id="undo">Undo last mark<kbd>Ctrl Z</kbd></button>
@@ -111,23 +112,22 @@
 
     <footer class="notes-band">
       <h2 class="notes-label">Notes</h2>
-      <p class="notes-line" id="message" role="status" aria-live="polite">Figures 1&ndash;9 fill a cell. Backspace clears it. Arrow keys walk the plate; hold shift with a figure to pencil it.</p>
+      <p class="notes-line" id="message" role="status" aria-live="polite">Figures 1&ndash;9 fill a cell. Backspace clears it. Arrow keys walk the plate; P toggles pencil, or hold shift with a figure to pencil just that one.</p>
       <p class="notes-meta"><span id="conflict-count">No repeats</span> &middot; <span id="filled-count">0 of 81 cells set</span></p>
     </footer>
 
     <div class="trim" aria-hidden="true">
       <p class="trim-caption">Plate <span id="trim-plate">X</span> &middot; 9&times;9 Latin square</p>
       <ul class="ink-bar">
-        <li class="ink-chip" style="--chip: var(--fam-1)"><span>Viridian</span></li>
-        <li class="ink-chip" style="--chip: var(--fam-2)"><span>Manganese</span></li>
-        <li class="ink-chip" style="--chip: var(--fam-3)"><span>Chromate</span></li>
+        <li class="ink-chip" style="--chip: var(--fam-1)"><span>Indigo</span></li>
+        <li class="ink-chip" style="--chip: var(--fam-2)"><span>Plum</span></li>
+        <li class="ink-chip" style="--chip: var(--fam-3)"><span>Ochre</span></li>
         <li class="ink-chip" style="--chip: var(--fam-4)"><span>Cerulean</span></li>
-        <li class="ink-chip" style="--chip: var(--conflict)"><span>Crimson</span></li>
+        <li class="ink-chip" style="--chip: var(--flag)"><span>Crimson</span></li>
         <li class="ink-chip" style="--chip: var(--ink)"><span>Key</span></li>
       </ul>
     </div>
 
-    <div class="reg" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   </div>
   <script src="script.js"></script>
 </body>
